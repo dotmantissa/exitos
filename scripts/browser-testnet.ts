@@ -110,7 +110,7 @@ async function click(name: string) {
 async function untilDone() {
   await page
     .getByRole("heading", {
-      name: /Allowance confirmed\.|That is on the chain\.|Home, safely\./,
+      name: /Approval confirmed\.|Deposit confirmed\.|Withdrawal confirmed\.|Test tokens received\./,
     })
     .waitFor({ timeout: 240000 });
 }
@@ -120,6 +120,10 @@ try {
     !(await page.evaluate(() => typeof window.ethereum?.request === "function"))
   )
     throw new Error("The actual signing transport did not initialize.");
+  await page
+    .getByRole("button", { name: "Try the test vault", exact: true })
+    .first()
+    .click();
   await click("Connect wallet");
   await page
     .getByRole("button", { name: "Disconnect wallet", exact: true })
@@ -151,7 +155,7 @@ try {
     functionName: "balanceOf",
     args: [account],
   });
-  await click("Add test credit");
+  await click("Deposit XUSD");
   await page.getByLabel("Amount in XUSD").fill("7");
   await click("Review deposit");
   await page
@@ -181,9 +185,11 @@ try {
     await untilDone();
   }
   await click("Back to your position");
-  await click("Recovery");
-  await page.getByRole("button", { name: "Withdraw", exact: true }).waitFor();
   await click("Withdraw");
+  await page
+    .getByRole("button", { name: "Withdraw to wallet", exact: true })
+    .waitFor();
+  await click("Withdraw to wallet");
   await page.getByLabel("Amount in XUSD").fill("1e2");
   await click("Review withdrawal");
   await page
@@ -211,7 +217,7 @@ try {
   await click("Confirm in wallet");
   await page
     .getByRole("status")
-    .filter({ hasText: "Home, safely." })
+    .filter({ hasText: "Withdrawal confirmed." })
     .waitFor({ timeout: 240000 });
   await page.screenshot({
     path: "qa-artifacts/actual-standalone-recovery.png",

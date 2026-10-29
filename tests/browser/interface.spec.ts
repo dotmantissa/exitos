@@ -8,32 +8,40 @@ for (const width of [360, 768, 1440])
       page.on("pageerror", (error) => errors.push(error.message));
       await page.setViewportSize({ width, height: 1000 });
       await page.emulateMedia({ colorScheme, reducedMotion: "reduce" });
-      await page.goto("/");
+      await page.goto("/#Overview");
       await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-        "A little preparation. A clear way out.",
+        "Prepare your backup withdrawal.",
       );
       await expect(page.locator("html")).toHaveAttribute(
         "data-theme",
         colorScheme,
       );
       await expect(
-        page.getByRole("button", { name: "Withdraw", exact: true }),
+        page.getByRole("button", { name: "Withdraw to wallet", exact: true }),
       ).toBeDisabled();
       if (width === 360)
         await page.getByRole("button", { name: "Toggle navigation" }).click();
-      await page.getByRole("button", { name: "Releases", exact: true }).click();
+      await page
+        .getByRole("button", { name: "Recovery code", exact: true })
+        .click();
       await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-        "Know what you are opening.",
+        "Check the recovery code.",
       );
       if (width === 360)
         await page.getByRole("button", { name: "Toggle navigation" }).click();
-      await page.getByRole("button", { name: "Activity", exact: true }).click();
+      await page
+        .getByRole("button", { name: "Transactions", exact: true })
+        .click();
       await expect(
-        page.getByRole("heading", { name: "Your wallet tells the story." }),
+        page.getByRole("heading", {
+          name: "Connect to see your transactions.",
+        }),
       ).toBeVisible();
       if (width === 360)
         await page.getByRole("button", { name: "Toggle navigation" }).click();
-      await page.getByRole("button", { name: "Overview", exact: true }).click();
+      await page
+        .getByRole("button", { name: "Test vault", exact: true })
+        .click();
       expect(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth,
@@ -49,7 +57,7 @@ for (const width of [360, 768, 1440])
 test("Theme persists and wallet absence has an actionable message", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/#Overview");
   const initial = await page.locator("html").getAttribute("data-theme");
   await page
     .getByRole("button", {
@@ -78,7 +86,7 @@ test("Saved route verifies the live release before offering a wallet connection"
 }) => {
   test.setTimeout(180000);
   await page.goto("/recovery-kit.html");
-  await expect(page.getByRole("region")).toContainText("Your way home", {
+  await expect(page.getByRole("region")).toContainText("Withdraw without", {
     timeout: 120000,
   });
   await expect(

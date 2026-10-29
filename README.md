@@ -1,12 +1,23 @@
 # ExitOS
 
-A clear way out when the usual website is unavailable.
+A backup withdrawal page for DeFi vaults.
 
 Open [ExitOS](https://exitos.vercel.app).
 
-ExitOS prepares a verified recovery route for a supported vault. You keep your wallet and your keys. A withdrawal goes directly from the vault back to you.
+A DeFi website can go offline while deposited tokens remain in its vault contract. ExitOS lets you save a verified withdrawal page beforehand. Open your saved recovery kit, connect your wallet and withdraw directly from the supported vault. You keep your wallet and keys.
 
 The interface uses a position ledger and a single arched doorway. Olive, parchment, IBM Plex Sans and Roboto Slab give it a calm, practical character. Light and dark themes follow your preference. Fonts, the original logo and interface icons are bundled locally.
+
+## Start here
+
+The homepage explains the product before asking for a wallet. Select **Try the test vault** to follow the actual testnet flow.
+
+1. Connect a browser wallet on X Layer testnet. Test OKB pays network fees.
+2. Claim free XUSD and deposit a small amount. Your wallet approves the exact amount before signing the deposit.
+3. Download the recovery kit from the panel beside your balance. Open the saved HTML file in a compatible wallet browser to check it works.
+4. Withdraw through the app or your saved copy. The kit reads approved code from X Layer and can operate without application asset requests.
+
+The app explains the next action using actual wallet and vault balances. **Test vault**, **Withdraw**, **Recovery code** and **Transactions** name the four workspaces. Existing hash links still work. XUSD is a test token with no monetary value.
 
 ## Current build
 

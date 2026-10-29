@@ -298,3 +298,16 @@ The requested website address is `https://exitos.vercel.app`. The product enviro
 8. Check the live page, original logo and favicon, security headers, RPC connectivity, both themes, recovery bootstrap and the absence of private files. Exercise the live standalone recovery flow with actual testnet signatures and receipts. If the RPC or wallet cannot be reached, keep the verification gate closed and report the observed limitation.
 
 Acceptance requires a ready production deployment, the exact requested alias, a functioning live recovery route, recorded real transaction evidence and a clean source push by the specified sole author.
+
+
+## First visit clarity revision
+
+The default root route explains ExitOS as a backup withdrawal page for DeFi vaults. It states the website outage problem, the need to save a copy beforehand, how the standalone page reaches the same contract, and the actual single vault testnet scope. An asymmetric schematic uses the original arched vault to show the usual website and saved kit as two access paths. It contains no fabricated balances or outage controls.
+
+`#Overview`, `#Recovery`, `#Releases` and `#Activity` remain compatible internal routes. Their visible labels are Test vault, Withdraw, Recovery code and Transactions. `#Start` returns to the explanation. Introductory anchors remain on that page. First visit content requires no wallet or node response. Genuine route changes move focus to the heading and support browser history; an initial load does not steal focus.
+
+A next action region uses the actual account, network, balance and deposited tokens to explain wallet connection, free test tokens, deposit or recovery preparation. The shared recovery panel exposes both the real download and the standalone page. A download message confirms the browser request started and asks the user to check the saved file. It never claims that a requested download is proven to exist on the user's disk.
+
+The independently stored recovery module also uses direct withdrawal copy. Its new bytes require a real immutable BundleStore deployment and reviewer-approved release 0.2.0, not a replacement file behind an old hash. `scripts/update-release.ts` journals signed transactions before broadcast, verifies identities and the admitted payload, preserves old release evidence, and updates public pins only after verification. The asset and vault are preserved. Regenerate the standalone bootstrap after admission and verify actual app and saved-page withdrawals before publishing the new interface.
+
+Acceptance covers first visit explanations at 360/768/1440 in both themes, zero initial node requests, clear next actions, browser history, keyboard focus, downloaded-page code verification, real deposits and withdrawals, public assets, private 404 responses and a secure source push. Screenshots are reviewed for layout, readability and accidental focus outlines. No judges' comprehension or user adoption result is invented.

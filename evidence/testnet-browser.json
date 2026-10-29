@@ -1,6 +1,6 @@
 {
   "chainId": 1952,
-  "verifiedAt": "2026-10-29T16:07:47.704Z",
+  "verifiedAt": "2026-10-29T17:20:55.036Z",
   "account": "0x225e0e9847e987Fe213D20B82D212FAE4d6e72DD",
   "origin": "http://127.0.0.1:5175",
   "startingAssets": "1000000000000000000000",
@@ -10,24 +10,24 @@
   "transport": "Controlled node signing transport using actual testnet transactions; no private key in browser",
   "transactions": [
     {
-      "hash": "0xdaf448c7ec99bbbe73fda15bdc05da16ffacf82d38a54116dcb91ac247716941",
+      "hash": "0x4e9be4fc853dad0f2e0bac8611a73c54930c0a223c1205f2c0aa6ac7105e70fb",
       "status": "success",
-      "block": "44831086"
+      "block": "44835472"
     },
     {
-      "hash": "0xc1152db1c87ee63bb3583343a328d363bb472f2cdf6ead783120797a781a3d45",
+      "hash": "0x4cdbffefbf4b75a52cb88f5bfb295ab503a88720ffa2bacf17a6d2abb203e539",
       "status": "success",
-      "block": "44831133"
+      "block": "44835517"
     },
     {
-      "hash": "0x512e7fa15bbbc35571c6a2d421b7c7970290261f6e9b3bcb141874728c23f44e",
+      "hash": "0xdce1008245e778204ccdeb5c6f520973f791e0992dca96abb4f118522f08b007",
       "status": "success",
-      "block": "44831181"
+      "block": "44835570"
     },
     {
-      "hash": "0xed6724cbc5928fd82fd5047cb33b2dbb715e40e35765de4832e12a8a53605a8c",
+      "hash": "0x94f9d8a1165e1aad366a9b1bbec350343297ccfa3863555cdb9f830504b36835",
       "status": "success",
-      "block": "44831224"
+      "block": "44835612"
     }
   ],
   "checks": [

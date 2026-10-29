@@ -51,3 +51,15 @@ Four additional actual transactions passed through the live domain: an exact all
 [Hosted signing evidence](../evidence/testnet-browser-hosted.json) records the actual receipts and balances. [Hosting evidence](../evidence/vercel-hosting.json) records the domain, headers, asset hashes and private path responses.
 
 Project domain registration returned 409 because Vercel reports an existing project assignment. The explicit alias operation succeeded and public checks passed on the requested domain. Future release commands must assign that alias explicitly. No other project was removed or reconfigured.
+
+## First visit clarity revision
+
+The default homepage explains ExitOS as a backup withdrawal page for DeFi vaults, shows the website and saved kit as two paths to the same vault, states the current testnet scope and leads into the actual test vault. It makes no initial RPC requests.
+
+Sixteen Chromium checks passed across 360, 768 and 1440 pixels in both themes. They cover the explanation, app navigation, actual next action guidance, browser history, keyboard access, theme persistence, approved standalone code and protection of local wallet files. Screenshots were inspected. An unwanted initial heading focus outline was fixed before the final checks.
+
+Recovery version 0.2.0 was stored in a new immutable bundle and admitted through real reviewer signatures. The asset, vault, circuit and registry were preserved. Creation input and code/release identity checks passed, including 16 actual circuit calls. The signed release journal supports resuming the exact transaction hashes and keeps prior public evidence.
+
+The revised browser flow completed four real testnet transactions: exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal with all app origin requests blocked. Token and share balances reconciled exactly. No simulated balance or receipt was used.
+
+[Clarity release evidence](../evidence/testnet-clarity-release.json) records the storage and admission hashes. [Browser signing evidence](../evidence/testnet-browser.json) records actual receipts. Older prototype recovery files carry their original pins; download the current kit for this new release.
