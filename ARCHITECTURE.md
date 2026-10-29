@@ -282,3 +282,19 @@ This section is authoritative for the first testnet implementation. Earlier DeWE
 The implementation can be committed before funding, but deployment and certification remain pending until actual receipts exist. The UI must remain disabled in that state. Public JSON is generated from successful receipts rather than hand filled examples. After deployment, regenerate the recovery kit, rerun the verifier, perform the actual security suite, complete browser signing checks and then build and push.
 
 Official TapeOut factory registration, actual DeWEB site/container identity, independent RPC operators, external reviewer approval, customer drills, marketplace billing and Aave support are separate gates. They are not represented as working features by this initial testnet application. Eligibility must be resolved with genuine official ecosystem capabilities before a winning entry can be claimed ready.
+
+
+## Production website delivery
+
+The requested website address is `https://exitos.vercel.app`. The product environment remains X Layer testnet, chain 1952. Hosting on a production domain does not change the value of test assets or establish official protocol registration.
+
+1. Link the authorized `exitos` Vercel project. Keep project linkage and account credentials in ignored local files. The repository uses the Vite framework, `npm ci`, `npm run build` and the `dist` output directory.
+2. Exclude `.local`, environment files, Git internals, task notes, agent instructions, dependency directories, research caches and browser artifacts from deployment. Run the Vercel upload dry check and examine actual file entries before publishing. Empty ignored directory records contain no file data.
+3. Generate the standalone recovery HTML during the cloud build. Its verifier embeds the committed public deployment identities and bundled fonts. The payload continues to come from the admitted immutable bundle on testnet.
+4. Use static filesystem routing. Application navigation uses URL hashes. A missing private path must return 404 rather than application HTML. Never add a blanket SPA rewrite that makes private file checks ambiguous.
+5. Apply content type protection, frame restrictions, referrer privacy and a permissions policy. The content policy permits bundled fonts and the inline standalone bootstrap, the verified Blob module, injected wallet extensions and the public X Layer RPC hosts. Block objects and external application frames.
+6. Keep the Service Worker and recovery HTML revalidated so new visits can receive current pins. Saved copies retain their original verifier trust boundary and must still recheck current approval and revocation on the chain.
+7. Publish the committed, validated source. Record the Vercel project, deployment identifier, ready state and literal assigned URL in the ignored task checklist. Confirm the exact `exitos.vercel.app` alias without replacing another project's domain.
+8. Check the live page, original logo and favicon, security headers, RPC connectivity, both themes, recovery bootstrap and the absence of private files. Exercise the live standalone recovery flow with actual testnet signatures and receipts. If the RPC or wallet cannot be reached, keep the verification gate closed and report the observed limitation.
+
+Acceptance requires a ready production deployment, the exact requested alias, a functioning live recovery route, recorded real transaction evidence and a clean source push by the specified sole author.

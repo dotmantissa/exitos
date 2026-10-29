@@ -1,6 +1,6 @@
 # ExitOS validation record
 
-Checked on 2026-10-29T15:25:50.695438+00:00.
+Updated after actual testnet browser verification on 2026-10-29T16:07:47.704Z.
 
 ## Verified locally
 
@@ -15,16 +15,27 @@ Checked on 2026-10-29T15:25:50.695438+00:00.
 
 The browser runner uses patched Playwright 1.55.1 and Chromium 140. Its temporary profiles are stored in the ignored project directory because the shared temporary filesystem is nearly full.
 
-## Pending actual chain certification
+## Actual testnet evidence
 
-The node returns chain 1952. The generated deployer currently has zero test OKB. The deploy command exits before broadcasting, and the public deployment configuration remains undeployed.
+The faucet funded the deployer with 0.2 test OKB. Five contracts were deployed and the release was admitted on X Layer testnet, chain 1952.
 
-No actual ExitOS deployment, admission, deposit, withdrawal or security receipt has been recorded. No live end to end certification is claimed.
-
-Once gas arrives, run the compiler, deployment, source and release verifier, actual transaction drill, separate registry security suite, kit generation and browser signing transport. Record the actual transaction hashes, receipt blocks and balance reconciliation. Then rebuild, revise this record and the README, and push the evidence.
+- All five creation transactions match the compiled source and constructor arguments. The verifier checks runtime code hashes, reviewer roles, the current admission, revocation, manifest commitments and stored executable bytes. All sixteen actual circuit calls match the expected outputs at block 44829832.
+- A real 50 XUSD drill claimed test credit, approved the exact amount, deposited it and withdrew it to the same wallet. The wallet returned to 1,000 XUSD and the vault shares returned to zero. Unauthorized admission and replay each produced a reverted receipt.
+- Thirteen actual authorization and revocation cases passed on a separate registry. Eleven were expected reverts. A valid admission and authorized revocation succeeded. The application registry was preserved.
+- The security runner persists signed transaction bytes before broadcast and resumes the same hashes. A transient latest state read after deployment was resolved by checking code at the actual receipt block.
+- Four actual browser transactions passed: exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal after blocking every request to the application origin. Wallet tokens and vault shares returned exactly to their initial balances. Dialog focus containment and invalid amount rejection also passed.
+- The disconnected browser checks passed at all three viewport sizes in both themes. The saved route check now waits for actual release verification and a visible wallet connection control.
 
 The browser signing transport keeps the key in Node and sends constrained actual testnet transactions. It does not substitute fabricated balances or receipts. A separate check with an installed user wallet remains a release gate.
+
+Public records: [deployment](../evidence/testnet-deployment.json), [source and release verification](../evidence/testnet-verification.json), [transaction drill](../evidence/testnet-e2e.json) [authorization cases](../evidence/testnet-security.json) and [browser signing](../evidence/testnet-browser.json).
 
 ## Official ecosystem gate
 
 The testnet NAND processor is independently deployed compatible code. It is not registered in the official TapeOut factory. The bundle store is not official DeWEB. Resolve genuine ecosystem registration and delivery before representing the project as an eligible, complete hackathon submission.
+
+## Test runner environment
+
+The local Node runner uses `NODE_OPTIONS='--dns-result-order=ipv4first --no-network-family-autoselection'` for reliable TCP connections in this environment. The browser still reads the actual public RPC. This setting changes routing, not chain responses.
+
+Browser signing uses a literal JavaScript provider bridge. TSX function serialization initially prevented injection; the runner now asserts provider initialization and actual wallet connection before proceeding. Failed attempts did not submit transactions or produce success evidence.

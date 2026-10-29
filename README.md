@@ -2,6 +2,8 @@
 
 A clear way out when the usual website is unavailable.
 
+Open [ExitOS](https://exitos.vercel.app).
+
 ExitOS prepares a verified recovery route for a supported vault. You keep your wallet and your keys. A withdrawal goes directly from the vault back to you.
 
 The interface uses a position ledger and a single arched doorway. Olive, parchment, IBM Plex Sans and Roboto Slab give it a calm, practical character. Light and dark themes follow your preference. Fonts, the original logo and interface icons are bundled locally.
@@ -10,7 +12,9 @@ The interface uses a position ledger and a single arched doorway. Olive, parchme
 
 The source implements real X Layer testnet claims, exact token allowances, vault deposits, withdrawals and receipt tracking. It contains no fabricated balances, practice wallet or simulated transaction success.
 
-Contracts are awaiting test OKB funding and deployment. The interface disables transactions until public deployment identities are present and the release verifier passes. No end to end testnet certification has been recorded yet.
+Five contracts are deployed on X Layer testnet, chain 1952. Source verification matches their creation transactions to the compiled contracts. The release verifier checks the approved code and contract identities before transactions become available.
+
+The recorded testnet drill claimed test credit, approved exactly 50 XUSD, deposited it and withdrew it to the same wallet. Token balances and vault shares reconciled exactly. Unauthorized admission and replay both reverted. Thirteen authorization and revocation cases passed on a separate registry. The browser also completed a 7 XUSD deposit, a 4 XUSD withdrawal and a 3 XUSD withdrawal from the standalone route with the application origin blocked. Its token and share balances reconciled exactly. Public addresses and receipt hashes are recorded in [deployment evidence](evidence/testnet-deployment.json), [verification evidence](evidence/testnet-verification.json) and [transaction evidence](evidence/testnet-e2e.json).
 
 The first supported protocol is an actual OpenZeppelin ERC4626 test vault using XUSD, a faucet token with no monetary value. The release policy uses eight NAND gates with TapeOut TAP 02 encoding. Two of three publishers and the safety reviewer must approve a release. Signatures bind the chain, registry, operation, nonce, release, root, storage address and expiry.
 
@@ -62,6 +66,8 @@ npm run build
 
 Deployment writes actual contract addresses and receipt hashes to the public configuration. Interrupted deployments resume from a local journal. Verification checks contract bytecode, release authority, the circuit, stored bytes and manifest commitments. The testnet drill performs actual transactions and reconciles the wallet and vault balances. It also sends replayed and unauthorized admissions and requires reverted receipts.
 
+The security suite uses a separate registry and saves signed transaction checkpoints before broadcasting. A resumed run sends the same transaction bytes. The application release stays available during those checks.
+
 Only recorded evidence belongs in the submission. A passing local build does not certify a deployed product.
 
 ## The recovery kit
@@ -87,3 +93,14 @@ The business hypothesis is a paid readiness service for protocol maintainers: re
 [Research](docs/research/RESEARCH.md) compares verified hackathon precedents and competing products. [OnchainOS notes](docs/research/ONCHAINOS.md) record API capabilities, limits and integration decisions. [Evidence](docs/research/EVIDENCE.md) separates published facts, chain checks and product hypotheses.
 
 ExitOS is being built for X Layer TapeOut Accelerate. The goal is a useful recovery product with a defensible demo and honest evidence.
+
+## Hosting
+
+The Vercel project is `exitos`. It installs locked dependencies with `npm ci`, builds the standalone kit and serves the Vite output from `dist`. Navigation uses URL hashes, so missing files return a real 404. Security headers restrict browser connections to the public testnet nodes and keep the interface out of frames.
+
+Local wallets, environment credentials, research caches and task notes are excluded from the upload. The generated recovery kit is rebuilt in Vercel from the committed public contract pins. No server secret is needed by the application.
+
+```sh
+vercel link --project exitos --yes
+vercel deploy --prod --yes
+```

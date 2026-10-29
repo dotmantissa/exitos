@@ -1,0 +1,18 @@
+# Only application source is needed for the remote build.
+.git/
+.local/
+.env
+.env.*
+!.env.example
+TASKS.md
+**/[Aa][Gg][Ee][Nn][Tt]*.md
+node_modules/
+dist/
+artifacts/
+research-cache/
+qa-artifacts/
+playwright-report/
+test-results/
+.vercel/
+*.tsbuildinfo
+public/recovery-kit.html
