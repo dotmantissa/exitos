@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "scripts/**/*.ts",
+    "src/solc.d.ts",
+    "src/chain/**/*.ts",
+    "src/lib/**/*.ts",
+    "src/data/deployment.json"
+  ],
+  "compilerOptions": { "types": ["node", "vite/client"] }
+}

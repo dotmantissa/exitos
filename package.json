@@ -5,38 +5,47 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build",
+    "build": "npm run kit && tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
-    "check": "tsc -b && node scripts/check-copy.mjs",
+    "check": "tsc -b && tsc -p tsconfig.scripts.json --noEmit && node scripts/check-copy.mjs",
     "circuit": "tsx scripts/build-circuit.ts",
     "compile": "tsx scripts/compile-contracts.ts",
     "deployer": "tsx scripts/create-deployer.ts",
     "deploy": "tsx scripts/deploy-testnet.ts",
     "verify": "tsx scripts/verify-testnet.ts",
     "testnet": "tsx scripts/testnet-e2e.ts",
-    "browser": "playwright test"
+    "browser": "playwright test",
+    "kit": "tsx scripts/build-kit.ts",
+    "security": "tsx scripts/testnet-security.ts",
+    "secrets": "node scripts/check-secrets.mjs",
+    "browser:testnet": "tsx scripts/browser-testnet.ts"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "5.1.1",
     "@fontsource/roboto-slab": "5.1.1",
-    "@openzeppelin/contracts": "5.2.0",
+    "@openzeppelin/contracts": "5.4.0",
     "lucide-react": "0.468.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "viem": "2.23.5",
-    "zod": "3.24.2"
+    "viem": "2.57.13",
+    "zod": "4.6.7"
   },
   "devDependencies": {
-    "@playwright/test": "1.51.1",
+    "@playwright/test": "1.55.1",
     "@types/node": "22.13.10",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-react": "4.3.4",
+    "esbuild": "0.25.12",
+    "prettier": "3.5.3",
     "solc": "0.8.28",
     "tsx": "4.19.3",
     "typescript": "5.7.3",
-    "vite": "6.2.2",
-    "vitest": "3.0.9"
+    "vite": "6.4.5",
+    "vitest": "4.1.12"
+  },
+  "overrides": {
+    "tmp": "0.2.7"
   }
 }

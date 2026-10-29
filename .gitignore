@@ -11,3 +11,6 @@ test-results/
 *.tsbuildinfo
 artifacts/
 
+
+# Generated standalone artifact; rebuilt from pinned public configuration.
+/public/recovery-kit.html
