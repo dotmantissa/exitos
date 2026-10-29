@@ -14,7 +14,7 @@ The source implements real X Layer testnet claims, exact token allowances, vault
 
 Five contracts are deployed on X Layer testnet, chain 1952. Source verification matches their creation transactions to the compiled contracts. The release verifier checks the approved code and contract identities before transactions become available.
 
-The recorded testnet drill claimed test credit, approved exactly 50 XUSD, deposited it and withdrew it to the same wallet. Token balances and vault shares reconciled exactly. Unauthorized admission and replay both reverted. Thirteen authorization and revocation cases passed on a separate registry. The browser also completed a 7 XUSD deposit, a 4 XUSD withdrawal and a 3 XUSD withdrawal from the standalone route with the application origin blocked. Its token and share balances reconciled exactly. Public addresses and receipt hashes are recorded in [deployment evidence](evidence/testnet-deployment.json), [verification evidence](evidence/testnet-verification.json) and [transaction evidence](evidence/testnet-e2e.json).
+The recorded testnet drill claimed test credit, approved exactly 50 XUSD, deposited it and withdrew it to the same wallet. Token balances and vault shares reconciled exactly. Unauthorized admission and replay both reverted. Thirteen authorization and revocation cases passed on a separate registry. The browser also completed a 7 XUSD deposit, a 4 XUSD withdrawal and a 3 XUSD withdrawal from the standalone route with the application origin blocked. Its token and share balances reconciled exactly. The same four transactions also passed on the public Vercel site. Public addresses and receipt hashes are recorded in [deployment evidence](evidence/testnet-deployment.json), [verification evidence](evidence/testnet-verification.json) and [transaction evidence](evidence/testnet-e2e.json).
 
 The first supported protocol is an actual OpenZeppelin ERC4626 test vault using XUSD, a faucet token with no monetary value. The release policy uses eight NAND gates with TapeOut TAP 02 encoding. Two of three publishers and the safety reviewer must approve a release. Signatures bind the chain, registry, operation, nonce, release, root, storage address and expiry.
 
@@ -103,4 +103,7 @@ Local wallets, environment credentials, research caches and task notes are exclu
 ```sh
 vercel link --project exitos --yes
 vercel deploy --prod --yes
+vercel alias set <deployment_url> exitos.vercel.app --scope mantissas-projects
 ```
+
+The exact address is assigned with the alias command after each production deployment. Vercel accepted this assignment for the verified live build. Automatic project domain registration returned a conflict, so keep the explicit alias step in the release process.

@@ -39,3 +39,15 @@ The testnet NAND processor is independently deployed compatible code. It is not 
 The local Node runner uses `NODE_OPTIONS='--dns-result-order=ipv4first --no-network-family-autoselection'` for reliable TCP connections in this environment. The browser still reads the actual public RPC. This setting changes routing, not chain responses.
 
 Browser signing uses a literal JavaScript provider bridge. TSX function serialization initially prevented injection; the runner now asserts provider initialization and actual wallet connection before proceeding. Failed attempts did not submit transactions or produce success evidence.
+
+## Published application
+
+The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_FEzQDMkceP7wKdCjpi7Q3HvZtXiW` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
+
+The live headers match the configured content policy, frame restrictions, referrer privacy and content type protection. Live JavaScript, CSS, logo, recovery kit and Service Worker bytes match the locally validated build. Eight private, source and missing paths return 404, including the local wallet file, environment credentials and Git configuration.
+
+Four additional actual transactions passed through the live domain: an exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal after blocking the app origin. Token and share balances returned exactly to their initial values. The live content policy allowed the verified recovery module to execute without application asset requests.
+
+[Hosted signing evidence](../evidence/testnet-browser-hosted.json) records the actual receipts and balances. [Hosting evidence](../evidence/vercel-hosting.json) records the domain, headers, asset hashes and private path responses.
+
+Project domain registration returned 409 because Vercel reports an existing project assignment. The explicit alias operation succeeded and public checks passed on the requested domain. Future release commands must assign that alias explicitly. No other project was removed or reconfigured.

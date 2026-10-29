@@ -1,0 +1,104 @@
+{
+  "origin": "https://exitos.vercel.app",
+  "verifiedAt": "2026-10-29T16:22:19.487Z",
+  "deploymentId": "dpl_FEzQDMkceP7wKdCjpi7Q3HvZtXiW",
+  "state": "READY",
+  "checks": [
+    {
+      "check": "x-content-type-options",
+      "value": "nosniff"
+    },
+    {
+      "check": "x-frame-options",
+      "value": "DENY"
+    },
+    {
+      "check": "referrer-policy",
+      "value": "no-referrer"
+    },
+    {
+      "check": "content-security-policy",
+      "value": "default-src 'self'; script-src 'self' 'unsafe-inline' blob: chrome-extension: moz-extension:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://testrpc.xlayer.tech https://xlayertestrpc.okx.com; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/logo.svg",
+      "sha256": "9920aab8e15ce1bc7ff39b5dc3003f8e5403e6aa44e20579516c1ce23c758f5b"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/assets/index-DtCTk_Uv.js",
+      "sha256": "154ced9e7c757be6ff4b670c3266db6c9d919b8c82e4c3d1b9d84ea77aae4b78"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/assets/react-DbHEDQBy.js",
+      "sha256": "896a84432d078f4346475a2af9a15ed0ffef40114cc04194cf0dc33a3205829c"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/assets/chain-DnRbaUOj.js",
+      "sha256": "df2bf8bf2516a838182bf2ab1e9d6bb135dc189c32967218fbd1be03ac3baee5"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/assets/validation-CiWA3Ue0.js",
+      "sha256": "f804b4b96d51efaefc57fc552a1d6b8db939fe869a7adf34ebbf00289b190487"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/assets/index-ByMvQ3Qd.css",
+      "sha256": "e5df6eb953e44de80aee409371ad34c50fb764d6af9df6f6df5ad967a5f62275"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/recovery-kit.html",
+      "sha256": "de8214ae71c19d7ea2e05ecb9a42f7733f263f8ececab4879e1d409b73daaa5e"
+    },
+    {
+      "check": "asset bytes and availability",
+      "path": "/sw.js",
+      "sha256": "08bea401f00e1006c8714ff36ce86cc379fedd881ee71765602f7accaa25846f"
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/.local/testnet-wallets.json",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/.env.local",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/TASKS.md",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/AGENT.md",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/AGENTS.md",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/.git/config",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/scripts/network.ts",
+      "status": 404
+    },
+    {
+      "check": "absent private or source path",
+      "path": "/nothing-here.json",
+      "status": 404
+    }
+  ]
+}

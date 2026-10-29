@@ -1,0 +1,42 @@
+{
+  "chainId": 1952,
+  "verifiedAt": "2026-10-29T16:25:32.522Z",
+  "account": "0x225e0e9847e987Fe213D20B82D212FAE4d6e72DD",
+  "origin": "https://exitos.vercel.app",
+  "startingAssets": "1000000000000000000000",
+  "endingAssets": "1000000000000000000000",
+  "startingShares": "0",
+  "endingShares": "0",
+  "transport": "Controlled node signing transport using actual testnet transactions; no private key in browser",
+  "transactions": [
+    {
+      "hash": "0x57a39ce281c4b08008614f6fb94779e1b15a9e4a595e5265955188ea48e335ec",
+      "status": "success",
+      "block": "44832156"
+    },
+    {
+      "hash": "0xc1f7d23e91747b498042a939521e37e8428b038a2b7e0bee6ef9ff77f739a3dd",
+      "status": "success",
+      "block": "44832200"
+    },
+    {
+      "hash": "0x24c9f45121b8412e04814c397278f506ce935d63964a6ded7224f55159b74d98",
+      "status": "success",
+      "block": "44832246"
+    },
+    {
+      "hash": "0xcd8490cdf7914b932ee573d9cb29a03c250458522ca37c31c940b85b30b1df28",
+      "status": "success",
+      "block": "44832289"
+    }
+  ],
+  "checks": [
+    "actual allowance and deposit",
+    "dialog focus containment",
+    "invalid amount rejection",
+    "app withdrawal",
+    "exact token and share balance reconciliation",
+    "standalone withdrawal with application origin blocked"
+  ],
+  "teamControlledWallet": true
+}
