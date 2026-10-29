@@ -17,6 +17,15 @@ const browser = await chromium.launch({
     env: { ...process.env, TMPDIR: browserTemp },
   }),
   page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+const baseUrl = new URL(
+  process.env.EXITOS_BROWSER_URL || "http://127.0.0.1:5175/",
+);
+if (
+  baseUrl.origin !== "http://127.0.0.1:5175" &&
+  baseUrl.origin !== "https://exitos.vercel.app"
+)
+  throw new Error("Unsupported browser verification origin.");
+const hosted = baseUrl.protocol === "https:";
 const hashes: Hex[] = [],
   errors: string[] = [];
 page.setDefaultTimeout(30000);
@@ -83,21 +92,20 @@ await page.exposeBinding(
     );
   },
 );
-await page.addInitScript(() => {
-  const request = (value: unknown) =>
-    (
-      window as unknown as {
-        exitTestnetRequest: (value: unknown) => Promise<unknown>;
-      }
-    ).exitTestnetRequest(value);
-  Object.assign(window, {
-    ethereum: { request, on: () => {}, removeListener: () => {} },
-  });
-});
+// Use literal browser JavaScript. Serializing a TSX-transformed callback can
+// retain Node-only function naming helpers and prevent provider injection.
+await page.addInitScript(`
+  window.ethereum = {
+    request: function(value) { return window.exitTestnetRequest(value); },
+    on: function() {},
+    removeListener: function() {}
+  };
+`);
 async function click(name: string) {
   await page
     .getByRole("button", { name, exact: true })
-    .click({ timeout: 30000 });
+    .click({ timeout: 120000 });
+  console.log(`Browser action: ${name}`);
 }
 async function untilDone() {
   await page
@@ -107,8 +115,15 @@ async function untilDone() {
     .waitFor({ timeout: 240000 });
 }
 try {
-  await page.goto("http://127.0.0.1:5175/");
+  await page.goto(baseUrl.href);
+  if (
+    !(await page.evaluate(() => typeof window.ethereum?.request === "function"))
+  )
+    throw new Error("The actual signing transport did not initialize.");
   await click("Connect wallet");
+  await page
+    .getByRole("button", { name: "Disconnect wallet", exact: true })
+    .waitFor({ timeout: 30000 });
   await page
     .getByText("Release verified", { exact: true })
     .waitFor({ timeout: 120000 });
@@ -124,6 +139,18 @@ try {
     await untilDone();
     await click("Back to your position");
   }
+  const startingAssets = await publicClient.readContract({
+    address: config.asset,
+    abi: assetAbi,
+    functionName: "balanceOf",
+    args: [account],
+  });
+  const startingShares = await publicClient.readContract({
+    address: config.vault,
+    abi: vaultAbi,
+    functionName: "balanceOf",
+    args: [account],
+  });
   await click("Add test credit");
   await page.getByLabel("Amount in XUSD").fill("7");
   await click("Review deposit");
@@ -173,11 +200,11 @@ try {
   await click("Back to your position");
   // The standalone page is loaded first, then all application-origin requests
   // are blocked. Its remaining reads and withdrawal go to the actual testnet.
-  await page.goto("http://127.0.0.1:5175/recovery-kit.html");
+  await page.goto(new URL("recovery-kit.html", baseUrl).href);
   await page
     .getByRole("button", { name: "Connect wallet", exact: true })
     .waitFor({ timeout: 120000 });
-  await page.route("http://127.0.0.1:5175/**", (route) => route.abort());
+  await page.route(baseUrl.origin + "/**", (route) => route.abort());
   await click("Connect wallet");
   await page.getByLabel("Amount to withdraw").fill("3");
   await click("Review withdrawal");
@@ -203,13 +230,41 @@ try {
       };
     }),
   );
+  const finalReceipt = await publicClient.getTransactionReceipt({
+    hash: hashes[hashes.length - 1],
+  });
+  const [endingAssets, endingShares] = await Promise.all([
+    publicClient.readContract({
+      address: config.asset,
+      abi: assetAbi,
+      functionName: "balanceOf",
+      args: [account],
+      blockNumber: finalReceipt.blockNumber,
+    }),
+    publicClient.readContract({
+      address: config.vault,
+      abi: vaultAbi,
+      functionName: "balanceOf",
+      args: [account],
+      blockNumber: finalReceipt.blockNumber,
+    }),
+  ]);
+  if (startingAssets !== endingAssets || startingShares !== endingShares)
+    throw new Error("Actual browser recovery balances did not reconcile.");
   writeFileSync(
-    "evidence/testnet-browser.json",
+    hosted
+      ? "evidence/testnet-browser-hosted.json"
+      : "evidence/testnet-browser.json",
     JSON.stringify(
       {
         chainId: 1952,
         verifiedAt: new Date().toISOString(),
         account,
+        origin: baseUrl.origin,
+        startingAssets: String(startingAssets),
+        endingAssets: String(endingAssets),
+        startingShares: String(startingShares),
+        endingShares: String(endingShares),
         transport:
           "Controlled node signing transport using actual testnet transactions; no private key in browser",
         transactions,
@@ -218,6 +273,7 @@ try {
           "dialog focus containment",
           "invalid amount rejection",
           "app withdrawal",
+          "exact token and share balance reconciliation",
           "standalone withdrawal with application origin blocked",
         ],
         teamControlledWallet: true,
@@ -229,6 +285,19 @@ try {
   console.log(
     `${transactions.length} actual browser transactions verified, including standalone recovery.`,
   );
+} catch (error) {
+  console.error("Browser runtime errors:", errors);
+  console.error(
+    "Browser verification alerts:",
+    await page.getByRole("alert").allTextContents(),
+  );
+  await page
+    .screenshot({
+      path: "qa-artifacts/actual-browser-failure.png",
+      fullPage: true,
+    })
+    .catch(() => {});
+  throw error;
 } finally {
   await browser.close();
 }
