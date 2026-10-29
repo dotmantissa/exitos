@@ -6,15 +6,15 @@
   "vault": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
   "processor": "0x261d8c4e1ebc16c2aa84b9d0ad90770f121dddc1",
   "registry": "0x547df1941ebdc6227478355d1c442970a49bc6cb",
-  "store": "0xe5418b547A2361758174c4a2660032A4784Efd28",
+  "store": "0x7DF972fECBA684Cb5c07b753b9f3Ab0BAfB52dF5",
   "assetCodeHash": "0x38d1e0b5553c4c202fa8061df73b5ca43bc583dd175ec8c175dad9f547bfd418",
   "vaultCodeHash": "0x5d58f712286a403504cee8b1ce4a89286d3cbc87909a5142e4f87edfa6fa5ff2",
   "processorCodeHash": "0xcf99a1a11ae4e2060da36e741c3fd4660db8fdb0850ba0cd9bd72410930aa648",
   "registryCodeHash": "0x64b836b616883def9114b599918b30831d101de85eba21c32195827de208c111",
-  "storeCodeHash": "0x2e03c5e558911e569660f73b41e54a1612c66527ac7b3c8c2553151568ae435a",
+  "storeCodeHash": "0xc30bcadcf9a16b62c743630a350b280c8dda4b588829fc90e2188dee53264d36",
   "circuitHash": "0x7d03b35aa2414695ad43f662663f6363f35d48f445462986a63f6743c4e8f1de",
-  "root": "0x73c781563bd71aeebc7c68e35112ad2c5ca1009afb7b5f54449fb4b3cf0abeb1",
-  "releaseId": 2,
+  "root": "0x2a1a017c5afb152606a3ddfb4deb35511b26cb640c84340e89ffd18b3674be6e",
+  "releaseId": 3,
   "reviewers": [
     "0x5B9d39bA5Ff67F67BDDa8739C9640d23BFbC890F",
     "0xFfA60f9B5FD96463450b39aA50Ed0C387902d979",
@@ -26,9 +26,9 @@
     "ExitVault": "0xeb0f29620c582b1bfe454f8d134d13f281b91ed9df44b1d4fc30787dfe237e98",
     "ReleaseProcessor": "0xdc7b002fa7786eacf657a4fcbfeec9b51f87312ccbea4dc74af3c7379fde059e",
     "ReleaseRegistry": "0x5553191158f34cae9ee547c748f1fc5d735836892f20bdeb6f863abbc6e0c536",
-    "BundleStore": "0xf37d86a7ad0d2957208519b1abd6451525ff0a610c0fc127d4fa10e94baa40da",
-    "Admission": "0x4a1130696eee6847ce0ee70dbd4cee43d5dad26c66bb8a3a0f8b96c830eaf076"
+    "BundleStore": "0xbd19628518220532afb8a086c05fc2bcb7b9b822ce7b15ef164c2f53761715ae",
+    "Admission": "0x40edb5538243ab28a921bc14d1c2323ef6e68350f24ec06488ea3d7188d7b3a5"
   },
-  "block": "44834919",
+  "block": "44837416",
   "provenance": "TAP-02 compatible testnet deployment"
 }

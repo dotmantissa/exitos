@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, writeFileSync, renameSync } from "node:fs";
+import { parseArgs } from "node:util";
 import {
   bytesToHex,
   encodeDeployData,
@@ -21,6 +22,16 @@ import { deployment, registryAbi } from "../src/chain/config";
 import { canonicalize, sha256 } from "../src/lib/manifest";
 import { verifyRelease } from "../src/chain/verification";
 
+const { values } = parseArgs({
+  options: { version: { type: "string" }, label: { type: "string" } },
+});
+const releaseVersion = values.version,
+  releaseLabel = values.label;
+if (!releaseVersion || !/^\d+\.\d+\.\d+$/.test(releaseVersion))
+  throw new Error("Supply --version with a numeric release version.");
+if (!releaseLabel || !/^[a-z][a-z0-9-]*$/.test(releaseLabel))
+  throw new Error("Supply --label with a lowercase release name.");
+
 if (!deployment) throw new Error("An existing testnet deployment is required.");
 const config = deployment,
   signer = signingClient(),
@@ -38,7 +49,7 @@ if (
 const module = readFileSync("public/recovery/recovery.js", "utf8");
 const moduleBytes = new TextEncoder().encode(module);
 const moduleHash = await sha256(moduleBytes);
-const journalPath = ".local/clarity-release.json";
+const journalPath = `.local/${releaseLabel}-release.json`;
 type Journal = {
   moduleHash: Hex;
   previous: typeof config;
@@ -57,6 +68,8 @@ if (existsSync(journalPath)) {
     throw new Error(
       "Recovery source changed after the release journal was created.",
     );
+  if (state.manifest.version !== releaseVersion)
+    throw new Error("Release version differs from the existing journal.");
 } else {
   await verifyRelease(config);
   const nonce = await publicClient.getTransactionCount({
@@ -76,7 +89,7 @@ if (existsSync(journalPath)) {
     schema: 1,
     chainId: 1952,
     project: "exitos",
-    version: "0.2.0",
+    version: releaseVersion,
     asset: config.asset,
     vault: config.vault,
     processor: config.processor,
@@ -220,8 +233,8 @@ writePublic(
 );
 writePublic("src/data/deployment.json", updated);
 writePublic("evidence/testnet-deployment.json", updated);
-writePublic("evidence/testnet-clarity-release.json", {
-  version: "0.2.0",
+writePublic(`evidence/testnet-${releaseLabel}-release.json`, {
+  version: releaseVersion,
   chainId: 1952,
   verifiedAt: new Date().toISOString(),
   previousRelease: state.previous.releaseId,
@@ -249,5 +262,5 @@ if (existsSync(initialPath)) {
   });
 }
 console.log(
-  "Recovery release 0.2.0 admitted and verified. Existing vault and token addresses are preserved.",
+  `Recovery release ${releaseVersion} admitted and verified. Existing vault and token addresses are preserved.`,
 );
