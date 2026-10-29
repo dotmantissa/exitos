@@ -1,10 +1,10 @@
 {
   "chainId": 1952,
-  "verifiedAt": "2026-10-29T15:44:55.960Z",
-  "block": "44829832",
-  "blockHash": "0x05e1b246abe70cbe9525097bba43863ca4783ebddaedd8225e3cf4fd4f08bd71",
-  "release": "0.1.0",
-  "root": "0x4e6c6a82dcfdc385cea16e6ed07f5b83ec5c2ce80df343986739d5842bec9cee",
+  "verifiedAt": "2026-10-29T17:16:34.806Z",
+  "block": "44835328",
+  "blockHash": "0x2208473d158a319601668263eaf97ba73c4bdf6c43d71d3807a18119ed78da3d",
+  "release": "0.2.0",
+  "root": "0x73c781563bd71aeebc7c68e35112ad2c5ca1009afb7b5f54449fb4b3cf0abeb1",
   "checks": [
     "five runtime code hashes",
     "registry identity and reviewer roles",
@@ -130,9 +130,9 @@
     },
     {
       "name": "BundleStore",
-      "address": "0x4618a6d08b832b183867a79c8375bc0da9cd7466",
-      "hash": "0xff8d967b993439b0919f52acb053005a4f00038872edd0d326acd13b8eeebdca",
-      "block": "44829786",
+      "address": "0xe5418b547A2361758174c4a2660032A4784Efd28",
+      "hash": "0xf37d86a7ad0d2957208519b1abd6451525ff0a610c0fc127d4fa10e94baa40da",
+      "block": "44834914",
       "creationInputMatches": true
     }
   ]

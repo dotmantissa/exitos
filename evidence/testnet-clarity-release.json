@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "chainId": 1952,
+  "verifiedAt": "2026-10-29T17:09:25.508Z",
+  "previousRelease": 1,
+  "releaseId": 2,
+  "vault": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
+  "registry": "0x547df1941ebdc6227478355d1c442970a49bc6cb",
+  "store": "0xe5418b547A2361758174c4a2660032A4784Efd28",
+  "root": "0x73c781563bd71aeebc7c68e35112ad2c5ca1009afb7b5f54449fb4b3cf0abeb1",
+  "moduleHash": "0x36384c97a9946f7cb1a33bae5dca750c5c635a9f394ce0e0a700c733e6026578",
+  "storageTransaction": "0xf37d86a7ad0d2957208519b1abd6451525ff0a610c0fc127d4fa10e94baa40da",
+  "admissionTransaction": "0x4a1130696eee6847ce0ee70dbd4cee43d5dad26c66bb8a3a0f8b96c830eaf076",
+  "block": "44834919"
+}

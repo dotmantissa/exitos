@@ -19,7 +19,8 @@
     "kit": "tsx scripts/build-kit.ts",
     "security": "tsx scripts/testnet-security.ts",
     "secrets": "node scripts/check-secrets.mjs",
-    "browser:testnet": "tsx scripts/browser-testnet.ts"
+    "browser:testnet": "tsx scripts/browser-testnet.ts",
+    "release:update": "tsx scripts/update-release.ts"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "5.1.1",
