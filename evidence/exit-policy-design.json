@@ -1,0 +1,168 @@
+{
+  "scope": "Local design only; no ExitOS circuit deployed",
+  "nand_gates": 8,
+  "inputs": 4,
+  "outputs": 1,
+  "vectors": [
+    {
+      "input_lsb_first": 0,
+      "publishers": [
+        0,
+        0,
+        0
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 1,
+      "publishers": [
+        1,
+        0,
+        0
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 2,
+      "publishers": [
+        0,
+        1,
+        0
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 3,
+      "publishers": [
+        1,
+        1,
+        0
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 4,
+      "publishers": [
+        0,
+        0,
+        1
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 5,
+      "publishers": [
+        1,
+        0,
+        1
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 6,
+      "publishers": [
+        0,
+        1,
+        1
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 7,
+      "publishers": [
+        1,
+        1,
+        1
+      ],
+      "reviewer": 0,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 8,
+      "publishers": [
+        0,
+        0,
+        0
+      ],
+      "reviewer": 1,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 9,
+      "publishers": [
+        1,
+        0,
+        0
+      ],
+      "reviewer": 1,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 10,
+      "publishers": [
+        0,
+        1,
+        0
+      ],
+      "reviewer": 1,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 11,
+      "publishers": [
+        1,
+        1,
+        0
+      ],
+      "reviewer": 1,
+      "output": 1
+    },
+    {
+      "input_lsb_first": 12,
+      "publishers": [
+        0,
+        0,
+        1
+      ],
+      "reviewer": 1,
+      "output": 0
+    },
+    {
+      "input_lsb_first": 13,
+      "publishers": [
+        1,
+        0,
+        1
+      ],
+      "reviewer": 1,
+      "output": 1
+    },
+    {
+      "input_lsb_first": 14,
+      "publishers": [
+        0,
+        1,
+        1
+      ],
+      "reviewer": 1,
+      "output": 1
+    },
+    {
+      "input_lsb_first": 15,
+      "publishers": [
+        1,
+        1,
+        1
+      ],
+      "reviewer": 1,
+      "output": 1
+    }
+  ]
+}
