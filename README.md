@@ -6,7 +6,7 @@ Open [ExitOS](https://exitos.vercel.app).
 
 A DeFi website can go offline while deposited tokens remain in its vault contract. ExitOS lets you save a verified withdrawal page beforehand. Open your saved recovery kit, connect your wallet and withdraw directly from the supported vault. You keep your wallet and keys.
 
-The interface uses a position ledger and a single arched doorway. Olive, parchment, IBM Plex Sans and Roboto Slab give it a calm, practical character. Light and dark themes follow your preference. Fonts, the original logo and interface icons are bundled locally.
+The interface uses a position ledger and a single arched doorway. Warm cream, sage, forest green and charcoal give it a calm, practical character. IBM Plex Sans carries the controls and Roboto Slab gives the headlines their voice. Light and dark themes follow your preference. Fonts, the original logo and interface icons are bundled locally.
 
 ## Start here
 
@@ -88,6 +88,14 @@ The downloaded HTML file contains the trusted bootstrap, public deployment pins 
 Wallet injection depends on the browser. Use a compatible wallet browser or extension. A downloaded file must still be able to reach the RPC, and some wallets do not inject into local files. The hosted standalone route shares the application's origin. Test the chosen delivery method before relying on it.
 
 The bootstrap remains trusted software. The current testnet configuration reads one OKX operated RPC. Stronger independent node checks, official DeWEB delivery and an independently pinned bootstrap are separate production gates.
+
+Changing the recovery module requires a new immutable release. Specify a new version and a distinct journal label so interrupted publication can resume safely.
+
+```sh
+npm run release:update -- --version 0.3.0 --label palette
+npm run verify
+npm run kit
+```
 
 ## Scope and trust
 

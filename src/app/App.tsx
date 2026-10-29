@@ -365,6 +365,9 @@ export default function App() {
     const next = theme === "light" ? "dark" : "light";
     setTheme(next);
     document.documentElement.dataset.theme = next;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", next === "dark" ? "#231F20" : "#FEF8F5");
     try {
       localStorage.setItem("exitos.theme", next);
     } catch {}

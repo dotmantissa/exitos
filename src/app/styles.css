@@ -1,34 +1,41 @@
+/* The four brand colours are the only colour sources for both themes. */
 :root {
   font-family: "IBM Plex Sans", sans-serif;
-  color: #263323;
-  background: #f6f4eb;
+  color: var(--text);
+  background: var(--canvas);
   font-synthesis: none;
   font-weight: 400;
-  --canvas: #f6f4eb;
-  --nav: #eeede3;
-  --surface: #fcfbf6;
-  --text: #263323;
-  --muted: #667160;
-  --line: #dadccf;
-  --action: #35482d;
-  --on-action: #fafaf1;
-  --highlight: #dfe8ca;
-  --error: #924527;
-  --error-bg: #f6eae1;
+  --cream: #fef8f5;
+  --sage: #729877;
+  --forest: #53745f;
+  --charcoal: #231f20;
+  --canvas: var(--cream);
+  --nav: color-mix(in srgb, var(--sage) 8%, var(--cream));
+  --surface: var(--cream);
+  --text: var(--charcoal);
+  --muted: color-mix(in srgb, var(--forest) 82%, var(--charcoal));
+  --line: color-mix(in srgb, var(--forest) 25%, var(--cream));
+  --action: var(--forest);
+  --action-hover: var(--charcoal);
+  --on-action: var(--cream);
+  --highlight: color-mix(in srgb, var(--sage) 18%, var(--cream));
+  --error: var(--charcoal);
+  --error-bg: color-mix(in srgb, var(--charcoal) 6%, var(--cream));
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --canvas: #121810;
-  --nav: #182016;
-  --surface: #1c2519;
-  --text: #f1f1df;
-  --muted: #a5af9c;
-  --line: #35412f;
-  --action: #cadba4;
-  --on-action: #17210f;
-  --highlight: #2e3f23;
-  --error: #f5bb99;
-  --error-bg: #34261d;
+  --canvas: var(--charcoal);
+  --nav: color-mix(in srgb, var(--cream) 3%, var(--charcoal));
+  --surface: color-mix(in srgb, var(--cream) 3%, var(--charcoal));
+  --text: var(--cream);
+  --muted: color-mix(in srgb, var(--cream) 70%, var(--sage));
+  --line: color-mix(in srgb, var(--sage) 32%, var(--charcoal));
+  --action: var(--sage);
+  --action-hover: var(--cream);
+  --on-action: var(--charcoal);
+  --highlight: color-mix(in srgb, var(--sage) 16%, var(--charcoal));
+  --error: var(--cream);
+  --error-bg: color-mix(in srgb, var(--cream) 8%, var(--charcoal));
   color-scheme: dark;
 }
 * {
@@ -441,7 +448,7 @@ h1 {
   color: var(--on-action);
 }
 .primary-button:hover:not(:disabled) {
-  filter: brightness(1.13);
+  background: var(--action-hover);
 }
 .secondary-button {
   background: transparent;
@@ -878,10 +885,10 @@ h1 {
   color: var(--text);
   background: var(--surface);
   width: min(460px, calc(100vw - 28px));
-  box-shadow: 0 20px 80px #0003;
+  box-shadow: 0 20px 80px color-mix(in srgb, var(--charcoal) 20%, transparent);
 }
 .transaction-dialog::backdrop {
-  background: #11180f80;
+  background: color-mix(in srgb, var(--charcoal) 65%, transparent);
   backdrop-filter: blur(4px);
 }
 .dialog-top {

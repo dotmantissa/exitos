@@ -417,6 +417,7 @@
   max-width: 560px;
 }
 .task-guide .text-button {
+  color: var(--text);
   margin-top: 12px;
   font-size: 13px;
 }
