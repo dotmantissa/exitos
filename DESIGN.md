@@ -2,13 +2,13 @@
 
 Seed: `14987762712530303984`. The five independent draws were recorded in `design-rolls.json` before frontend implementation.
 
-| Axis | Draw | Product rationale |
-| --- | --- | --- |
-| Palette | Deep olive and parchment | Recovery should feel steady and tactile. Quiet green signals care without imitating a trading terminal. |
-| Layout | Dashboard first split pane | Positions and actions stay on the left. The prepared route and its current state stay visible on the right. |
-| Type | Grotesk and slab serif | IBM Plex Sans carries controls and numbers. Roboto Slab gives the key sentence a reassuring, recognizable voice. |
-| Motion | One orchestrated opening sequence | A single opening reveal establishes the workspace. Subsequent motion explains an action, never decorates idle time. |
-| Structural device | Physical exit aperture | One large doorway represents the prepared route from a position back to the wallet. Its state changes as recovery progresses. |
+| Axis              | Draw                              | Product rationale                                                                                                             |
+| ----------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Palette           | Deep olive and parchment          | Recovery should feel steady and tactile. Quiet green signals care without imitating a trading terminal.                       |
+| Layout            | Dashboard first split pane        | Positions and actions stay on the left. The prepared route and its current state stay visible on the right.                   |
+| Type              | Grotesk and slab serif            | IBM Plex Sans carries controls and numbers. Roboto Slab gives the key sentence a reassuring, recognizable voice.              |
+| Motion            | One orchestrated opening sequence | A single opening reveal establishes the workspace. Subsequent motion explains an action, never decorates idle time.           |
+| Structural device | Physical exit aperture            | One large doorway represents the prepared route from a position back to the wallet. Its state changes as recovery progresses. |
 
 ## Token plan
 

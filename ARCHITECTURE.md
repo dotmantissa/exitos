@@ -4,9 +4,9 @@ Revision 2. Updated after the user required actual end to end testnet behavior a
 
 ## Product contract
 
-ExitOS gives users a prepared way to perform a supported action when an application's usual website is unavailable. The first adapter covers one Aave V3 supply position on X Layer with no debt. A release registry admits reviewed recovery bundles through a TapeOut approval circuit. Users sign directly with their own wallet. ExitOS never receives assets or signing keys.
+ExitOS gives users a prepared way to perform a supported action when an application's usual website is unavailable. The first adapter covers one deployed ERC4626 test vault on X Layer testnet. Aave V3 supply recovery is a later adapter with a separate verification gate. A release registry admits reviewed recovery bundles through a TapeOut approval circuit. Users sign directly with their own wallet. ExitOS never receives assets or signing keys.
 
-There is one product environment: X Layer testnet, chain 1952. Every position, deposit, recovery and receipt must come from real deployed testnet contracts. No testnet wallet, fabricated balance, simulated success, fixture position or mock signing flow is permitted. Before deployment the UI shows an honest setup state and disables unavailable actions.
+There is one product environment: X Layer testnet, chain 1952. Every position, deposit, recovery and receipt must come from real deployed testnet contracts. No fabricated wallet, fabricated balance, simulated success, fixture position or mock signing flow is permitted. Before deployment the UI shows an honest setup state and disables unavailable actions.
 
 The researched mainnet addresses must not be reused on testnet. If Aave or official TapeOut deployments are absent, the first testnet integration uses a real deployed ERC4626 savings vault, a clearly identified test ERC20 faucet, a TapeOut compatible NAND processor and the actual authenticated release registry. The app labels test assets and protocol provenance. Compatibility is not a claim of official TapeOut registration or mainnet eligibility. Aave mainnet remains the follow up adapter after the testnet pipeline is proven.
 
@@ -32,27 +32,27 @@ The implementation delivers a real testnet application, deterministic verificati
 
 ## Repository map
 
-| Path | Responsibility |
-| --- | --- |
-| `src/app` | Application shell, route state and theme |
-| `src/components` | Brand, navigation, aperture, position ledger, dialog and accessible primitives |
-| `src/features/recovery` | Amount entry, transaction review, progress and receipts |
-| `src/features/releases` | Approved release identity, local development status and inspection |
-| `src/lib` | Amount parsing, fingerprints, manifest hashing and circuit codec |
-| `src/chain` | X Layer configuration, ABIs, RPC checks, wallet provider and Aave adapter |
-| `src/data` | Clearly labeled testnet fixtures and public deployment configuration |
-| `public` | SVG logo, tab icon and self contained static assets |
-| `contracts` | Registry and local fixture processor sources |
-| `scripts` | Circuit generation, read only checks, contract compilation and copy/security checks |
-| `tests` | Domain tests, contract tests and browser scenarios |
-| `docs/research` | Migrated evidence and winner research |
-| `evidence` | Public reproducible verification records |
+| Path                    | Responsibility                                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------------------------- |
+| `src/app`               | Application shell, route state and theme                                                             |
+| `src/components`        | Brand, navigation, aperture, position ledger, dialog and accessible primitives                       |
+| `src/features/recovery` | Amount entry, transaction review, progress and receipts                                              |
+| `src/features/releases` | Approved release identity, local development status and inspection                                   |
+| `src/lib`               | Amount parsing, fingerprints, manifest hashing and circuit codec                                     |
+| `src/chain`             | X Layer configuration, ABIs, RPC checks, wallet provider and ERC4626 adapter, followed later by Aave |
+| `src/data`              | Public deployment configuration populated only from actual receipts                                  |
+| `public`                | SVG logo, tab icon and self contained static assets                                                  |
+| `contracts`             | Registry and independently deployed compatible processor sources                                     |
+| `scripts`               | Circuit generation, read only checks, contract compilation and copy/security checks                  |
+| `tests`                 | Domain tests, contract tests and browser scenarios                                                   |
+| `docs/research`         | Migrated evidence and winner research                                                                |
+| `evidence`              | Public reproducible verification records                                                             |
 
 Runtime dependencies are React, viem, Zod and Lucide, with bundled fonts. Vite builds static files. No frontend API secret, private key, server generated signing instruction, remote executable dependency or analytics script is permitted. Optional OnchainOS services are later backend features.
 
 ## Domain types and state
 
-`Environment = testnet`. `Position` contains adapter ID, chain ID, asset address, token decimals, raw asset/share values as bigint, account, source block and data origin. Monetary values are never held in floating point state. `RecoveryIntent` binds chain, account, chain, adapter, asset and integer amount.
+`Environment = testnet`. `Position` contains adapter ID, chain ID, asset address, token decimals, raw asset/share values as bigint, account, source block and data origin. Monetary values are never held in floating point state. `RecoveryIntent` binds chain, account, adapter, asset and integer amount.
 
 `VerificationReport` records release, manifest, circuit, node agreement, contract identity and freshness separately. Each check is pending, passed or failed with a stable reason code. A display label cannot grant authorization. `PreparedTransaction` includes the exact destination, calldata, value, network, account, pinned source block and an intent digest.
 
@@ -154,9 +154,9 @@ Acceptance: independent predicate and evaluator match all sixteen inputs; exactl
 
 ### A15 Registry authorization
 
-Deploy one small non upgradeable registry with an immutable project ID and four distinct nonzero EOA reviewer roles. EIP712 release admission binds chain, registry, project, operation, nonce, expiry, container, manifest root and source commit. Verify canonical low s signatures, recover each known signer, reject duplicates and derive the four bits internally. Circuit input flags are never supplied as authority by the caller.
+Deploy one small non upgradeable registry with an immutable project ID and four distinct nonzero EOA reviewer roles. EIP712 release admission binds chain, registry, project, operation, nonce, expiry, container, manifest root and expiry. The canonical manifest binds the exact executable module and contract identities. Verify canonical low s signatures, recover each known signer, reject duplicates and derive the four bits internally. Circuit input flags are never supplied as authority by the caller.
 
-The registry checks processor membership, circuit metadata/netlist commitment and beacon implementation/code identity. Bound static call gas, require exactly one output byte equal to zero or one and reject errors. Admission requires the circuit's true output. Store immutable release data and emit an event. No payable function, custody or arbitrary external call.
+The testnet registry pins processor runtime code identity and circuit metadata/netlist commitment. The official production path additionally verifies factory membership and the relevant beacon implementation. Bound static call gas, require exactly one output byte equal to zero or one and reject errors. Admission requires the circuit's true output. Store immutable release data and emit an event. No payable function, custody or arbitrary external call.
 
 Acceptance: two publisher approvals without reviewer fail; reviewer and one publisher fail; two publishers plus reviewer pass; malformed/replayed/cross domain/duplicate/unrecognized signatures fail; altered circuit implementation/netlist and malformed outputs fail.
 
@@ -166,7 +166,7 @@ Revocation signs a separate operation type, release identity and next nonce, wit
 
 On testnet, first check official processor availability. If absent, deploy the clearly identified compatible processor and immutable netlist, with the exact published TAP NAND semantics. Do not claim it is registered in the official ecosystem. On the later mainnet path, publish the circuit on an existing registered processor after reading current fees and transistor requirements. Compare the live netlist/output with the generated artifact. Deploy the registry against that identity, verify source and constructor arguments, admit the exact bundle and record receipts. No real user funds are involved in registry admission.
 
-Acceptance: local contract tests cover mutation/replay and circuit failure; public addresses remain absent until actual deployment; live verification evidence is captured before enabling signing.
+Acceptance: actual testnet contract checks cover mutation/replay and circuit failure; public addresses remain absent until actual deployment; live verification evidence is captured before enabling signing.
 
 ## RPC, wallet and recovery execution
 
@@ -174,7 +174,7 @@ Acceptance: local contract tests cover mutation/replay and circuit failure; publ
 
 Model operator identity separately from URL. The two default OKX domains count as one operator; a proxy to OKX is not independent. Query candidates, select a shared recent block and compare its hash, identity and all critical reads. Bound timeouts and concurrency, abort superseded requests, reject divergence and stale blocks. Do not silently fall back to one operator for authorization.
 
-Single operator reads may inform a clearly labeled view; they never authorize live recovery. Provider URLs with embedded credentials cannot be bundled or exported. Paid private RPC access needs a design that avoids recreating the application's backend as the sole recovery dependency.
+The initial testnet journey uses one OKX operator and discloses this limitation in review and the standalone kit. Mainnet recovery requires independent operators before writes. Provider URLs with embedded credentials cannot be bundled or exported. Paid private RPC access needs a design that avoids recreating the application's backend as the sole recovery dependency.
 
 Acceptance: same operator on multiple URLs does not satisfy quorum; mismatches, pruned state, timeout and stale head fail explicitly; browser CORS is tested.
 
@@ -200,7 +200,7 @@ Acceptance: wrong destination/recipient/asset/value/calldata mutation fails; pre
 
 Immediately before signing, reacquire account/chain, current release/revocation, circuit/contract identities, node agreement, freshness, debt/position and current contract limits. The intent digest and reviewed values must still match. A pending guard or unsupported configuration disables the request. Perform exactly one wallet request per operation ID. The original protocol remains the final authority on its own withdrawal rules.
 
-Acceptance: account/network/version changes between review and signing reject; a caller cannot forge a display report into authorization; testnet never reaches this function.
+Acceptance: account/network/version changes between review and signing reject; a caller cannot forge a display report into authorization; testnet signing reaches this function only after its disclosed testnet checks pass.
 
 ### A22 Receipt and refresh
 
@@ -226,7 +226,7 @@ Acceptance: five user drills and one concrete maintainer quote are targets until
 
 ### A25 Automated validation
 
-Run TypeScript, domain tests, local EVM contract tests, production build and browser scenarios. Browser coverage includes both themes, 360/768/1440 px, keyboard dialog operation, reduced motion, all testnet steps, amount failures, provider rejection, empty live holdings and gate rejection. Scan product copy for em dashes, decorative hyphens and emojis. Use a focused secret scan on tracked source and built JS, without printing matching secrets.
+Run TypeScript, domain tests, actual testnet security transactions, production build and browser scenarios. Browser coverage includes both themes, 360/768/1440 px, keyboard dialog operation, reduced motion, all testnet steps, amount failures, provider rejection, empty live holdings and gate rejection. Scan product copy for em dashes, decorative hyphens and emojis. Use a focused secret scan on tracked source and built JS, without printing matching secrets.
 
 Acceptance: each test checks behavior or security invariants; screenshots are inspected; no console errors, overflow, missing assets or fake clickable controls remain.
 
@@ -238,19 +238,47 @@ Push exact validated main and compare remote head. Private presentation deployme
 
 ## Ready for live recovery checklist
 
-- Actual circuit and registry deployed, source verified, identities pinned and admission recorded.
+- Actual circuit and registry deployed, source reproducibly compiled, identities pinned and admission recorded.
 - Exact DeWEB bundle approved and verified before execution from a tested wallet compatible origin.
 - Independent browser node agreement and fresh contract/debt checks pass.
-- Adapter succeeds on a pinned fork for intended states and rejects all unsupported states.
+- Adapter succeeds on actual testnet for intended states and rejects all unsupported states.
 - Tiny authorized live exercise completes with genuine receipts and balance evidence.
 - Reviewer and pilot findings resolved, recovery scope and bootstrap trust disclosed.
 
-Until these conditions are met, the app remains a development implementation with a complete testnet journey and live read capability. That boundary is part of the product's engineering, not a visual placeholder.
+Until these conditions are met, the app remains a development implementation with a testnet journey whose certification requires actual recorded transactions and live read capability. That boundary is part of the product's engineering, not a visual placeholder.
 
 ## Testnet deployment additions
 
-A27: Deploy ExitUSD, a capped daily faucet token with no monetary value. Deploy ExitVault using the OpenZeppelin ERC4626 implementation with virtual share protection. Deploy the eight NAND processor, authenticated registry and immutable bundle store. Contract bytecode and roots must match compiled artifacts. Store addresses, hashes and deployment receipt blocks in public JSON. Keep deployer and reviewer keys in an ignored local file with mode 0600.
+A27: Deploy ExitUSD, a daily faucet token with a per address claim limit with no monetary value. Deploy ExitVault using the OpenZeppelin ERC4626 implementation with virtual share protection. Deploy the eight NAND processor, authenticated registry and immutable bundle store. Contract bytecode and roots must match compiled artifacts. Store addresses, hashes and deployment receipt blocks in public JSON. Keep deployer and reviewer keys in an ignored local file with mode 0600.
 
 A28: Publish and verify the recovery bundle bytes on testnet before recording its approved root. The loader must read and hash the actual stored bytes before executing payload code. This is a testnet compatibility integration, not an invented official DeWEB identity. The full official DeWEB path needs authentic ecosystem addresses or a later mainnet deployment.
 
 A29: Run actual testnet checks: faucet claim, approve, deposit, release admission, circuit truth table, recovery, balances, replay rejection, bundle hash and receipt confirmation. Do not create simulated UI evidence. Deterministic math/schema tests remain useful; end to end certification comes only from actual testnet calls and receipts.
+
+## Exact implementation contracts for the current build
+
+This section is authoritative for the first testnet implementation. Earlier DeWEB, independent operator and Aave sections describe subsequent production gates rather than implemented features.
+
+### File and function order
+
+1. `src/chain/config.ts` parses `src/data/deployment.json` using a strict schema. `status: undeployed` yields no usable deployment. A deployed entry requires all five addresses, runtime code hashes, root, circuit hash, four reviewers, release ID, real transaction hashes and receipt block. The reader and wallet use chain 1952 exclusively. Technical scripts use the same public endpoint without credentials.
+2. `src/lib/amounts.ts` parses decimal strings into bigint units with exactly eighteen decimals. Every caller rejects zero, excess precision and an amount beyond its current limit. The review preserves the input amount; rendering is never used to construct signing data.
+3. `src/lib/circuit.ts` encodes eight NAND records and evaluates the final signal. Inputs zero through two represent publishers. Input three represents the safety reviewer. The independent predicate is at least two publishers and the reviewer. Exactly masks 11, 13, 14 and 15 pass.
+4. `contracts/ExitUSD.sol` mints 1,000 XUSD through `claim()` once per address per day. It has no owner, price feed or monetary value. `contracts/ExitVault.sol` uses OpenZeppelin ERC4626 and a six decimal virtual share offset. It has no operator withdrawal privilege.
+5. `contracts/ReleaseProcessor.sol` fixes the exact immutable eight gate netlist. `contracts/ReleaseRegistry.sol` pins its code and circuit, stores four unique EOAs, rejects unknown and duplicate signers, derives the policy bits itself, and consumes a monotonically increasing nonce. Revocation uses a separate operation and leaves the original record inspectable. The registry holds no funds.
+6. `scripts/deploy-testnet.ts` deploys the asset, vault, processor and registry in dependency order. It calculates the actual next CREATE address for the store. The manifest includes this address, every relevant contract identity and the recovery module hash and size. It deploys the exact canonical bundle to `BundleStore`, then admits its root using two publisher signatures and the reviewer signature. The local deployment journal records transaction hashes before awaiting inclusion. A retry resumes those hashes instead of broadcasting replacements.
+7. `src/chain/verification.ts::verifyRelease()` checks the node network and recent block, all five runtime code hashes at that block, current release and revocation, project ID, processor, reviewer roles, circuit commitment and dimensions, vault asset, store commitment, canonical manifest root and exact module size and hash. The executable allowlist contains one file, `recovery.js`. It returns bytes only after every gate passes. The browser uses one node operator on testnet and states this explicitly.
+8. `src/chain/position.ts::readPosition()` reads shares, wallet balance, allowance, maximum withdrawal, next claim timestamp and gas from the same block. `convertToAssets` supplies the displayed asset amount. `prepareTransaction()` rechecks the release and current holdings, constructs a fixed destination and selector, decodes withdrawal calldata again, estimates gas and rejects insufficient gas balance.
+9. `src/chain/wallet.ts` requests accounts only from a click. It offers explicit network switching and listens to provider changes. The app's operation generation invalidates old reads and reviews. Immediately before signing, the app reacquires account and chain. It sends one request while the signing lock is held.
+10. `src/app/App.tsx` implements Overview, Recovery, Releases and Activity. A deposit with insufficient allowance first reviews an exact allowance and then requires a separate deposit review. Claiming is a separate transaction. Withdrawal is always `withdraw(amount, connectedAccount, connectedAccount)` with zero native value. The native dialog traps focus and makes its background inert. Closing cannot abandon an unresolved signing request.
+11. Receipt handling checks the actual returned transaction sender, target, calldata and value. Successful deposit and withdrawal require the expected ERC4626 event and exact asset amount. A timeout remains a tracked pending hash. A reverted receipt cannot display completion. Activity stores only public account, hash, action, amount, timestamp and receipt status in browser storage.
+12. `public/recovery/recovery.js` is the reviewed standalone interface stored on the chain. `src/recovery-bootstrap.ts` executes its verified bytes through a Blob module only after all release checks. It supplies a narrowly constrained withdrawal function that repeats the signing and receipt gates. The module cannot request arbitrary transaction destinations through that interface. Approved executable code remains trusted code, and runs with the bootstrap origin's privileges.
+13. `scripts/build-kit.ts` bundles the verifier, public deployment pins and fonts into one HTML file. It contains no application asset dependency. The file is generated and ignored in Git. The Service Worker saves that file for the browser; downloaded copies preserve their original pins. Browser wallet support and RPC CORS are delivery requirements to verify, not assumptions of universal support.
+14. `scripts/verify-testnet.ts` performs all sixteen actual circuit calls and writes public evidence. `scripts/testnet-e2e.ts` sends real claim, allowance, deposit and withdrawal transactions, checks receipt events and reconciles token and share balances. It sends actual replayed and unsigned admissions and requires reverted receipts. `scripts/testnet-security.ts` exercises a separate real registry so testing revocation cannot disable the application's approved release.
+15. Browser checks inspect disconnected, empty, error and responsive states without inventing balances. The funded signing suite uses a controlled test account and a local signing transport; every request goes to the actual testnet. It verifies complete wallet journeys, dialog focus, account changes and the standalone route. Public evidence must identify these as team controlled wallets rather than customers.
+
+### Completion evidence and remaining gates
+
+The implementation can be committed before funding, but deployment and certification remain pending until actual receipts exist. The UI must remain disabled in that state. Public JSON is generated from successful receipts rather than hand filled examples. After deployment, regenerate the recovery kit, rerun the verifier, perform the actual security suite, complete browser signing checks and then build and push.
+
+Official TapeOut factory registration, actual DeWEB site/container identity, independent RPC operators, external reviewer approval, customer drills, marketplace billing and Aave support are separate gates. They are not represented as working features by this initial testnet application. Eligibility must be resolved with genuine official ecosystem capabilities before a winning entry can be claimed ready.
