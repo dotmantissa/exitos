@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F6F4EB" />
+    <meta
+      name="description"
+      content="A prepared way to bring your assets home when an application's usual website is unavailable."
+    />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>ExitOS | A clear way out</title>
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("exitos.theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
