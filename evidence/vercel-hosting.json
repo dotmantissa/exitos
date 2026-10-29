@@ -1,7 +1,7 @@
 {
   "origin": "https://exitos.vercel.app",
-  "verifiedAt": "2026-10-29T16:22:19.487Z",
-  "deploymentId": "dpl_FEzQDMkceP7wKdCjpi7Q3HvZtXiW",
+  "verifiedAt": "2026-10-29T17:30:08.706Z",
+  "deploymentId": "dpl_6RgCynGFmJudJQLpJWoHS8k2PLoR",
   "state": "READY",
   "checks": [
     {
@@ -27,8 +27,8 @@
     },
     {
       "check": "asset bytes and availability",
-      "path": "/assets/index-DtCTk_Uv.js",
-      "sha256": "154ced9e7c757be6ff4b670c3266db6c9d919b8c82e4c3d1b9d84ea77aae4b78"
+      "path": "/assets/index-qHPpKjYL.js",
+      "sha256": "09be1b802c56dad08ce452becd7b16b4efc8bc1122d098df39a7fccb846ad66c"
     },
     {
       "check": "asset bytes and availability",
@@ -47,13 +47,13 @@
     },
     {
       "check": "asset bytes and availability",
-      "path": "/assets/index-ByMvQ3Qd.css",
-      "sha256": "e5df6eb953e44de80aee409371ad34c50fb764d6af9df6f6df5ad967a5f62275"
+      "path": "/assets/index-DtsUyAfE.css",
+      "sha256": "8e7e3243d85ec6cca204a518fd7bb72a2fbe47550e4d474431eeb726c7f93ebc"
     },
     {
       "check": "asset bytes and availability",
       "path": "/recovery-kit.html",
-      "sha256": "de8214ae71c19d7ea2e05ecb9a42f7733f263f8ececab4879e1d409b73daaa5e"
+      "sha256": "b8d1df216da97e26661b166e5baa6b72599d3d0a39c9fb18b04ea1a6772a4657"
     },
     {
       "check": "asset bytes and availability",

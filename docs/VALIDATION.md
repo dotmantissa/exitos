@@ -1,12 +1,12 @@
 # ExitOS validation record
 
-Updated after actual testnet browser verification on 2026-10-29T16:07:47.704Z.
+Updated after actual testnet browser verification on 2026-10-29T17:32:50.260Z.
 
 ## Verified locally
 
 - TypeScript checks pass for the application and deployment scripts.
 - Thirteen domain tests pass, covering exact amounts, circuit policy and manifest integrity.
-- Nine Chromium browser checks pass across 360, 768 and 1440 pixels in both themes, including navigation, theme persistence, wallet absence, verification gating and protection of local wallet files.
+- Sixteen Chromium browser checks pass across 360, 768 and 1440 pixels in both themes, including the introduction, navigation, theme persistence, wallet absence, verification gating and protection of local wallet files.
 - Mobile and desktop screenshots were inspected in both themes.
 - Solidity 0.8.28 compilation passes with optimization enabled, 200 runs and the Paris target. OpenZeppelin Contracts is pinned to 5.4.0.
 - The production build and standalone kit generation pass.
@@ -19,7 +19,7 @@ The browser runner uses patched Playwright 1.55.1 and Chromium 140. Its temporar
 
 The faucet funded the deployer with 0.2 test OKB. Five contracts were deployed and the release was admitted on X Layer testnet, chain 1952.
 
-- All five creation transactions match the compiled source and constructor arguments. The verifier checks runtime code hashes, reviewer roles, the current admission, revocation, manifest commitments and stored executable bytes. All sixteen actual circuit calls match the expected outputs at block 44829832.
+- All five creation transactions match the compiled source and constructor arguments. The verifier checks runtime code hashes, reviewer roles, the current admission, revocation, manifest commitments and stored executable bytes. All sixteen actual circuit calls match the expected outputs at block 44835328 after admitting recovery version 0.2.0.
 - A real 50 XUSD drill claimed test credit, approved the exact amount, deposited it and withdrew it to the same wallet. The wallet returned to 1,000 XUSD and the vault shares returned to zero. Unauthorized admission and replay each produced a reverted receipt.
 - Thirteen actual authorization and revocation cases passed on a separate registry. Eleven were expected reverts. A valid admission and authorized revocation succeeded. The application registry was preserved.
 - The security runner persists signed transaction bytes before broadcast and resumes the same hashes. A transient latest state read after deployment was resolved by checking code at the actual receipt block.
@@ -42,7 +42,7 @@ Browser signing uses a literal JavaScript provider bridge. TSX function serializ
 
 ## Published application
 
-The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_FEzQDMkceP7wKdCjpi7Q3HvZtXiW` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
+The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_6RgCynGFmJudJQLpJWoHS8k2PLoR` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
 
 The live headers match the configured content policy, frame restrictions, referrer privacy and content type protection. Live JavaScript, CSS, logo, recovery kit and Service Worker bytes match the locally validated build. Eight private, source and missing paths return 404, including the local wallet file, environment credentials and Git configuration.
 
@@ -63,3 +63,7 @@ Recovery version 0.2.0 was stored in a new immutable bundle and admitted through
 The revised browser flow completed four real testnet transactions: exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal with all app origin requests blocked. Token and share balances reconciled exactly. No simulated balance or receipt was used.
 
 [Clarity release evidence](../evidence/testnet-clarity-release.json) records the storage and admission hashes. [Browser signing evidence](../evidence/testnet-browser.json) records actual receipts. Older prototype recovery files carry their original pins; download the current kit for this new release.
+
+Seven introduction checks also passed against the exact public domain across all three viewport sizes in both themes. The public homepage loads without a wallet or an initial RPC request, explains the outage scenario and keeps navigation and browser history usable. The deployed assets match the final validated production build.
+
+The revised live application completed four additional genuine testnet transactions on the public domain. Its exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal all confirmed. The final withdrawal succeeded with all application origin requests blocked, and wallet tokens and vault shares returned exactly to their starting values. The hosted evidence now records this production revision.
