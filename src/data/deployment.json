@@ -1,1 +1,34 @@
-{ "status": "undeployed", "chainId": 1952 }
+{
+  "status": "deployed",
+  "chainId": 1952,
+  "deployedAt": "2026-10-29T15:43:49.652Z",
+  "asset": "0x1c1c2b15415a7e7f79c4448593149ca223e284d7",
+  "vault": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
+  "processor": "0x261d8c4e1ebc16c2aa84b9d0ad90770f121dddc1",
+  "registry": "0x547df1941ebdc6227478355d1c442970a49bc6cb",
+  "store": "0x4618a6d08b832b183867a79c8375bc0da9cd7466",
+  "assetCodeHash": "0x38d1e0b5553c4c202fa8061df73b5ca43bc583dd175ec8c175dad9f547bfd418",
+  "vaultCodeHash": "0x5d58f712286a403504cee8b1ce4a89286d3cbc87909a5142e4f87edfa6fa5ff2",
+  "processorCodeHash": "0xcf99a1a11ae4e2060da36e741c3fd4660db8fdb0850ba0cd9bd72410930aa648",
+  "registryCodeHash": "0x64b836b616883def9114b599918b30831d101de85eba21c32195827de208c111",
+  "storeCodeHash": "0x20b4bb32049590e620ea05385eb1d41cc3a59d0c049f51655b14c64009ac56ac",
+  "circuitHash": "0x7d03b35aa2414695ad43f662663f6363f35d48f445462986a63f6743c4e8f1de",
+  "root": "0x4e6c6a82dcfdc385cea16e6ed07f5b83ec5c2ce80df343986739d5842bec9cee",
+  "releaseId": 1,
+  "reviewers": [
+    "0x5B9d39bA5Ff67F67BDDa8739C9640d23BFbC890F",
+    "0xFfA60f9B5FD96463450b39aA50Ed0C387902d979",
+    "0xEF1D97AB38779eEbE4448408Db3416B77B855421",
+    "0x62a6e812a94323dE8e7D1D5d7E2B5e85BD7A2072"
+  ],
+  "transactions": {
+    "ExitUSD": "0x6d521a0507c8048feb52a20ddfa26aabd8eb2f4b201038a4064963e766c0c1c5",
+    "ExitVault": "0xeb0f29620c582b1bfe454f8d134d13f281b91ed9df44b1d4fc30787dfe237e98",
+    "ReleaseProcessor": "0xdc7b002fa7786eacf657a4fcbfeec9b51f87312ccbea4dc74af3c7379fde059e",
+    "ReleaseRegistry": "0x5553191158f34cae9ee547c748f1fc5d735836892f20bdeb6f863abbc6e0c536",
+    "BundleStore": "0xff8d967b993439b0919f52acb053005a4f00038872edd0d326acd13b8eeebdca",
+    "Admission": "0x2d7dd72cd0edbe9ab8b21062c05682e46a808451c268d46bcc16bd35be20171e"
+  },
+  "block": "44829792",
+  "provenance": "TAP-02 compatible testnet deployment"
+}

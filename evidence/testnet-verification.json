@@ -1,0 +1,139 @@
+{
+  "chainId": 1952,
+  "verifiedAt": "2026-10-29T15:44:55.960Z",
+  "block": "44829832",
+  "blockHash": "0x05e1b246abe70cbe9525097bba43863ca4783ebddaedd8225e3cf4fd4f08bd71",
+  "release": "0.1.0",
+  "root": "0x4e6c6a82dcfdc385cea16e6ed07f5b83ec5c2ce80df343986739d5842bec9cee",
+  "checks": [
+    "five runtime code hashes",
+    "registry identity and reviewer roles",
+    "current admission and revocation",
+    "circuit netlist and dimensions",
+    "vault asset",
+    "canonical manifest root",
+    "stored bundle commitment",
+    "executable file hash and size"
+  ],
+  "vectors": [
+    {
+      "input": 0,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 1,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 2,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 3,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 4,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 5,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 6,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 7,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 8,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 9,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 10,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 11,
+      "actual": "0x01",
+      "expected": "0x01"
+    },
+    {
+      "input": 12,
+      "actual": "0x00",
+      "expected": "0x00"
+    },
+    {
+      "input": 13,
+      "actual": "0x01",
+      "expected": "0x01"
+    },
+    {
+      "input": 14,
+      "actual": "0x01",
+      "expected": "0x01"
+    },
+    {
+      "input": 15,
+      "actual": "0x01",
+      "expected": "0x01"
+    }
+  ],
+  "operator": "OKX single RPC operator",
+  "officialFactoryRegistration": false,
+  "sourceChecks": [
+    {
+      "name": "ExitUSD",
+      "address": "0x1c1c2b15415a7e7f79c4448593149ca223e284d7",
+      "hash": "0x6d521a0507c8048feb52a20ddfa26aabd8eb2f4b201038a4064963e766c0c1c5",
+      "block": "44829763",
+      "creationInputMatches": true
+    },
+    {
+      "name": "ExitVault",
+      "address": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
+      "hash": "0xeb0f29620c582b1bfe454f8d134d13f281b91ed9df44b1d4fc30787dfe237e98",
+      "block": "44829769",
+      "creationInputMatches": true
+    },
+    {
+      "name": "ReleaseProcessor",
+      "address": "0x261d8c4e1ebc16c2aa84b9d0ad90770f121dddc1",
+      "hash": "0xdc7b002fa7786eacf657a4fcbfeec9b51f87312ccbea4dc74af3c7379fde059e",
+      "block": "44829774",
+      "creationInputMatches": true
+    },
+    {
+      "name": "ReleaseRegistry",
+      "address": "0x547df1941ebdc6227478355d1c442970a49bc6cb",
+      "hash": "0x5553191158f34cae9ee547c748f1fc5d735836892f20bdeb6f863abbc6e0c536",
+      "block": "44829777",
+      "creationInputMatches": true
+    },
+    {
+      "name": "BundleStore",
+      "address": "0x4618a6d08b832b183867a79c8375bc0da9cd7466",
+      "hash": "0xff8d967b993439b0919f52acb053005a4f00038872edd0d326acd13b8eeebdca",
+      "block": "44829786",
+      "creationInputMatches": true
+    }
+  ]
+}
