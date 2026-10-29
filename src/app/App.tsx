@@ -49,8 +49,9 @@ import {
 } from "../chain/position";
 import { verifyRelease, type VerifiedRelease } from "../chain/verification";
 import { displayAmount, parseAmount, shortAddress } from "../lib/amounts";
+import Landing from "./Landing";
 
-type Page = "Overview" | "Recovery" | "Releases" | "Activity";
+type Page = "Start" | "Overview" | "Recovery" | "Releases" | "Activity";
 type RecordItem = {
   hash: Hex;
   account: Address;
@@ -76,16 +77,16 @@ type Flow = {
   error?: string;
 };
 const actionTitle = {
-  claim: "Claim test credit",
-  approve: "Allow XUSD",
-  deposit: "Add to the vault",
-  withdraw: "Bring it home",
+  claim: "Get free test XUSD",
+  approve: "Approve this deposit amount",
+  deposit: "Deposit XUSD into the test vault",
+  withdraw: "Withdraw to your wallet",
 };
 const nav = [
-  { label: "Overview", icon: House },
-  { label: "Recovery", icon: DoorOpen },
-  { label: "Releases", icon: FileCheck2 },
-  { label: "Activity", icon: Activity },
+  { page: "Overview", label: "Test vault", icon: House },
+  { page: "Recovery", label: "Withdraw", icon: DoorOpen },
+  { page: "Releases", label: "Recovery code", icon: FileCheck2 },
+  { page: "Activity", label: "Transactions", icon: Activity },
 ] as const;
 function loadHistory(): RecordItem[] {
   try {
@@ -158,7 +159,7 @@ export default function App() {
       location.hash.slice(1),
     )
       ? location.hash.slice(1)
-      : "Overview") as Page,
+      : "Start") as Page,
   );
   const [theme, setTheme] = useState(
     document.documentElement.dataset.theme || "light",
@@ -176,6 +177,8 @@ export default function App() {
   const [copied, setCopied] = useState("");
   const [mobileNav, setMobileNav] = useState(false);
   const [kitReady, setKitReady] = useState(false);
+  const [kitDownloaded, setKitDownloaded] = useState(false);
+  const previousPage = useRef<Page>(page);
   const dialog = useRef<HTMLDialogElement>(null);
   const version = useRef(0),
     lock = useRef(false),
@@ -224,17 +227,28 @@ export default function App() {
       if (stillCurrent()) setLoading(false);
     }
   }, [account, chainId]);
+  const introduction = page === "Start";
   useEffect(() => {
-    void inspect();
-  }, [inspect]);
+    if (!introduction) void inspect();
+  }, [inspect, introduction]);
+  useEffect(() => {
+    document.title =
+      page === "Start"
+        ? "ExitOS | Backup withdrawals for DeFi"
+        : `ExitOS | ${nav.find((item) => item.page === page)?.label}`;
+    if (previousPage.current !== page) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      document.getElementById("page-title")?.focus({ preventScroll: true });
+    }
+    previousPage.current = page;
+  }, [page]);
   useEffect(() => {
     void refresh();
   }, [refresh]);
   useEffect(() => {
     const change = () =>
       setPage(
-        nav.find((v) => v.label === location.hash.slice(1))?.label ??
-          "Overview",
+        nav.find((v) => v.page === location.hash.slice(1))?.page ?? "Start",
       );
     window.addEventListener("hashchange", change);
     return () => window.removeEventListener("hashchange", change);
@@ -568,22 +582,32 @@ export default function App() {
       link.download = "ExitOS recovery kit.html";
       link.click();
       URL.revokeObjectURL(url);
+      setKitDownloaded(true);
     } catch (e) {
       setError(humanError(e));
     }
   };
+  if (page === "Start")
+    return (
+      <Landing
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onOpenVault={() => go("Overview")}
+        onOpenRecovery={() => go("Recovery")}
+      />
+    );
   return (
     <div className="app-shell">
       <aside className={`sidebar ${mobileNav ? "expanded" : ""}`}>
         <a
           className="brand"
-          aria-label="ExitOS overview"
-          href="#Overview"
-          onClick={() => go("Overview")}
+          aria-label="ExitOS introduction"
+          href="#Start"
+          onClick={() => go("Start")}
         >
           <Mark />
           <span>
-            ExitOS<span className="brand-sub">A clear way out</span>
+            ExitOS<span className="brand-sub">Backup withdrawals</span>
           </span>
         </a>
         <button
@@ -595,20 +619,28 @@ export default function App() {
           <Menu size={22} />
         </button>
         <nav aria-label="Main navigation">
-          {nav.map(({ label, icon: Icon }) => (
+          {nav.map(({ page: target, label, icon: Icon }) => (
             <button
-              key={label}
+              key={target}
               aria-label={label}
-              className={`nav-item ${page === label ? "active" : ""}`}
-              aria-current={page === label ? "page" : undefined}
-              onClick={() => go(label)}
+              className={`nav-item ${page === target ? "active" : ""}`}
+              aria-current={page === target ? "page" : undefined}
+              onClick={() => go(target)}
             >
               <Icon size={19} />
               <span>{label}</span>
-              {page === label && <span className="nav-dot" />}
+              {page === target && <span className="nav-dot" />}
             </button>
           ))}
         </nav>
+        <button
+          className="intro-return"
+          aria-label="What is ExitOS?"
+          onClick={() => go("Start")}
+        >
+          <CircleHelp size={17} />
+          <span>What is ExitOS?</span>
+        </button>
         <div className="sidebar-bottom">
           <div className="network-badge">
             <span className="status-dot" />X Layer testnet
@@ -647,7 +679,7 @@ export default function App() {
           <div className="breadcrumb">
             Workspace
             <ChevronRight size={14} />
-            <span>{page}</span>
+            <span>{nav.find((item) => item.page === page)?.label}</span>
           </div>
           <button
             className={`wallet-button ${account ? "connected" : ""}`}
@@ -680,23 +712,23 @@ export default function App() {
         <div className="page-body">
           <div className="title-row">
             <div>
-              <h1>
+              <h1 id="page-title" tabIndex={-1}>
                 {page === "Overview"
-                  ? "A little preparation.\nA clear way out."
+                  ? "Prepare your backup withdrawal."
                   : page === "Recovery"
-                    ? "Your wallet.\nYour way home."
+                    ? "Withdraw your vault tokens."
                     : page === "Releases"
-                      ? "Know what\nyou are opening."
-                      : "Every move,\naccounted for."}
+                      ? "Check the recovery code."
+                      : "Your testnet transactions."}
               </h1>
               <p className="intro">
                 {page === "Overview"
-                  ? "Keep a verified route to your assets, even when the usual website takes a day off."
+                  ? "Deposit free test XUSD into this vault, then save a recovery page you can use if the website goes offline."
                   : page === "Recovery"
-                    ? "Open the approved recovery route and withdraw directly to your wallet."
+                    ? "Withdraw XUSD directly from the test vault to your wallet. Your saved recovery kit can do the same without this website."
                     : page === "Releases"
-                      ? "A recovery release earns your trust through its code, its policy, and its approvals."
-                      : "Actual transaction receipts from X Layer testnet. Nothing here is a rehearsal."}
+                      ? "ExitOS checks that the withdrawal code matches the version approved on the chain before your wallet can use it."
+                      : "See your token claims, deposits and withdrawals, with links to their actual X Layer receipts."}
               </p>
             </div>
             <div className="title-stamp">
@@ -736,6 +768,61 @@ export default function App() {
             <section className="primary-pane">
               {(page === "Overview" || page === "Recovery") && (
                 <>
+                  <section className="task-guide" aria-label="Your next step">
+                    <h2>
+                      {!account
+                        ? "Start with your wallet"
+                        : wrongNetwork
+                          ? "Switch to X Layer testnet"
+                          : !position
+                            ? "Reading your test vault balance"
+                            : page === "Recovery" && position.maximum === 0n
+                              ? "Make a deposit before withdrawing"
+                              : position.walletBalance === 0n &&
+                                  position.assets === 0n
+                                ? "Get free test tokens"
+                                : position.assets === 0n
+                                  ? "Make a small test deposit"
+                                  : "Save your backup withdrawal page"}
+                    </h2>
+                    <p>
+                      {!account
+                        ? "Connect a browser wallet to begin. You will need test OKB for network fees. The XUSD tokens you deposit are free and have no monetary value."
+                        : wrongNetwork
+                          ? "This vault uses test tokens on X Layer testnet. Switch networks using the button above."
+                          : !position
+                            ? "Your balance comes directly from the chain. Actions become available once that read and the recovery code checks finish."
+                            : page === "Recovery" && position.maximum === 0n
+                              ? "There are no deposited tokens to withdraw yet. Open the test vault, get XUSD and deposit a small amount."
+                              : position.walletBalance === 0n &&
+                                  position.assets === 0n
+                                ? "Claim 1,000 XUSD below. Then deposit a small amount into the test vault. Each step opens a real wallet request."
+                                : position.assets === 0n
+                                  ? "Use Deposit XUSD below. Your wallet first approves the exact amount, then signs the deposit. Save the recovery kit afterward."
+                                  : "Download the recovery kit in the panel beside your balance. Open the saved file in a compatible wallet browser to check it works. It can read withdrawal code without this website."}
+                    </p>
+                    {!account && (
+                      <button
+                        className="text-button"
+                        onClick={connect}
+                        disabled={connecting}
+                      >
+                        Connect to start
+                        <Wallet size={16} />
+                      </button>
+                    )}
+                    {account &&
+                      page === "Recovery" &&
+                      position?.maximum === 0n && (
+                        <button
+                          className="text-button"
+                          onClick={() => go("Overview")}
+                        >
+                          Open the test vault
+                          <Vault size={16} />
+                        </button>
+                      )}
+                  </section>
                   <section
                     className="balance-section"
                     aria-label="Vault position"
@@ -743,7 +830,7 @@ export default function App() {
                     <div className="section-heading">
                       <span>
                         {page === "Overview"
-                          ? "Your prepared position"
+                          ? "Deposited in the test vault"
                           : "Available to withdraw"}
                       </span>
                       <button
@@ -777,8 +864,8 @@ export default function App() {
                         : position
                           ? `Test credit in the vault. Block ${position.block}`
                           : disconnected
-                            ? "Connect your wallet to see your position."
-                            : "No verified position available yet."}
+                            ? "Connect your wallet to read your deposited tokens."
+                            : "Your balance could not be read yet. Use refresh to try again."}
                     </div>
                   </section>
                   <div className="ledger-heading">
@@ -828,7 +915,7 @@ export default function App() {
                           position.walletBalance === 0n
                         }
                       >
-                        Add test credit
+                        Deposit XUSD
                       </button>
                       <button
                         className="primary-button"
@@ -838,7 +925,7 @@ export default function App() {
                         }
                       >
                         <DoorOpen size={17} />
-                        Withdraw
+                        Withdraw to wallet
                       </button>
                     </div>
                   </section>
@@ -846,7 +933,7 @@ export default function App() {
                     <div className="connect-note">
                       <KeyRound size={22} />
                       <div>
-                        <h3>Start with the wallet you already use.</h3>
+                        <h3>Your wallet approves every transfer.</h3>
                         <p>
                           We only request your public address. Every transaction
                           needs your approval.
@@ -864,7 +951,7 @@ export default function App() {
                   ) : (
                     <section className="wallet-credit">
                       <div>
-                        <h3>Wallet test credit</h3>
+                        <h3>XUSD in your wallet</h3>
                         <p>
                           {position
                             ? `${displayAmount(position.walletBalance)} XUSD available`
@@ -895,26 +982,6 @@ export default function App() {
                         </a>{" "}
                         for gas.
                       </p>
-                    </section>
-                  )}
-                  {page === "Recovery" && (
-                    <section className="saved-route">
-                      <Download size={22} />
-                      <div>
-                        <h3>Keep a copy close.</h3>
-                        <p>
-                          The downloaded kit includes a standalone verifier. It
-                          reads the approved recovery code from the chain, so
-                          the application server can be unavailable.
-                        </p>
-                        <button
-                          className="secondary-button compact"
-                          disabled={!release}
-                          onClick={saveKit}
-                        >
-                          Download recovery kit
-                        </button>
-                      </div>
                     </section>
                   )}
                   <div className="scope-note">
@@ -1059,8 +1126,8 @@ export default function App() {
                       icon={Activity}
                       title={
                         account
-                          ? "A quiet ledger is a good start."
-                          : "Your wallet tells the story."
+                          ? "No transactions recorded yet."
+                          : "Connect to see your transactions."
                       }
                     >
                       {account
@@ -1133,11 +1200,11 @@ export default function App() {
                     <Mark small />
                     <span className="door-line" />
                     <h2>
-                      A way back.
+                      Your vault.
                       <br />
-                      Already thought
+                      A backup way
                       <br />
-                      through.
+                      to withdraw.
                     </h2>
                     <p>
                       From the vault.
@@ -1156,9 +1223,9 @@ export default function App() {
                   <KeyRound size={18} />
                 </span>
                 <p>
-                  We prepare the route.
+                  Save the recovery page.
                   <br />
-                  <strong>You hold the keys.</strong>
+                  <strong>Keep your wallet and keys.</strong>
                 </p>
               </div>
               <div className="route-footer">
@@ -1180,23 +1247,42 @@ export default function App() {
                   <ArrowUpRight size={20} />
                 </button>
               </div>
-              {page === "Recovery" && (
+              <div className="recovery-actions">
+                <button
+                  className="secondary-button"
+                  onClick={saveKit}
+                  disabled={!release}
+                >
+                  <Download size={16} />
+                  Download recovery kit
+                </button>
                 <a
-                  className={`route-link ${!release ? "disabled" : ""}`}
                   href={release ? "/recovery-kit.html" : undefined}
                   target="_blank"
                   rel="noreferrer"
                   aria-disabled={!release}
+                  className={!release ? "route-link disabled" : ""}
                 >
-                  Open standalone route
+                  Open backup withdrawal
                   <ExternalLink size={15} />
                 </a>
-              )}
+                <p>
+                  Keep the downloaded HTML file. It reads approved code from X
+                  Layer, so the website can be unavailable.
+                </p>
+                {kitDownloaded && (
+                  <span className="kit-download-status" role="status">
+                    Download started. Open your saved file in a compatible
+                    wallet browser to check it works.
+                  </span>
+                )}
+              </div>
             </aside>
           </div>
           <footer className="page-footer">
             <span>
-              <Mark small />A calmer way home.
+              <Mark small />
+              Backup withdrawals. Your keys stay with you.
             </span>
             <span>
               Built on X Layer <span className="footer-separator" />
@@ -1238,17 +1324,25 @@ export default function App() {
               <h2 id="dialog-title">
                 {flow.step === "done"
                   ? flow.action === "withdraw"
-                    ? "Home, safely."
+                    ? "Withdrawal confirmed."
                     : flow.action === "approve"
-                      ? "Allowance confirmed."
-                      : "That is on the chain."
+                      ? "Approval confirmed."
+                      : flow.action === "claim"
+                        ? "Test tokens received."
+                        : "Deposit confirmed."
                   : actionTitle[flow.action]}
               </h2>
               <p className="dialog-intro">
                 {flow.step === "amount"
                   ? "No rush. Choose an amount, then check the details."
                   : flow.step === "done"
-                    ? "The transaction was included on X Layer. Check your position when you return."
+                    ? flow.action === "withdraw"
+                      ? "Your XUSD is back in your wallet. The withdrawal was included on X Layer."
+                      : flow.action === "approve"
+                        ? "The exact amount is approved. Continue below to sign the deposit."
+                        : flow.action === "claim"
+                          ? "The free test tokens are in your wallet. You can now deposit a small amount."
+                          : "Your XUSD is deposited in the test vault. Download the recovery kit so you can withdraw without this website."
                     : flow.action === "approve"
                       ? "Allow the vault to transfer exactly this amount. This does not deposit it yet."
                       : "Your wallet signs the request. The contract handles the transfer."}
@@ -1466,9 +1560,7 @@ export default function App() {
                           })
                     }
                   >
-                    {flow.hash
-                      ? "View transaction in Activity"
-                      : "Review again"}
+                    {flow.hash ? "View recorded transaction" : "Review again"}
                   </button>
                 </>
               )}

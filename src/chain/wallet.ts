@@ -80,6 +80,12 @@ export function humanError(error: unknown): string {
     /rejected|denied/i.test(value.shortMessage ?? value.message ?? "")
   )
     return "You declined the request. Nothing was sent.";
+  if (
+    /HTTP request failed|fetch failed|timed out|timeout|network request/i.test(
+      value.shortMessage ?? value.message ?? "",
+    )
+  )
+    return "We could not reach X Layer. Refresh to check again. If you already sent a transaction, check its link before retrying.";
   return (
     value.shortMessage ??
     value.message ??
