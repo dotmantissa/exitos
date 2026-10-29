@@ -28,7 +28,7 @@ if (
 const hosted = baseUrl.protocol === "https:";
 const hashes: Hex[] = [],
   errors: string[] = [];
-page.setDefaultTimeout(30000);
+page.setDefaultTimeout(120000);
 page.on("pageerror", (error) => errors.push(error.message));
 // The browser receives a controlled transport, never a private key. Every
 // write is constrained here and sent by the actual testnet signing client.
@@ -85,6 +85,20 @@ await page.exposeBinding(
         ...(tx.gas ? { gas: BigInt(tx.gas) } : {}),
       });
       hashes.push(hash);
+      writeFileSync(
+        ".local/browser-signing-last-run.json",
+        JSON.stringify(
+          {
+            origin: baseUrl.origin,
+            releaseId: config.releaseId,
+            account,
+            hashes,
+            updatedAt: new Date().toISOString(),
+          },
+          null,
+          2,
+        ) + "\n",
+      );
       return hash;
     }
     throw new Error(
@@ -212,6 +226,9 @@ try {
     .waitFor({ timeout: 120000 });
   await page.route(baseUrl.origin + "/**", (route) => route.abort());
   await click("Connect wallet");
+  await page
+    .getByLabel("Amount to withdraw")
+    .waitFor({ state: "visible", timeout: 120000 });
   await page.getByLabel("Amount to withdraw").fill("3");
   await click("Review withdrawal");
   await click("Confirm in wallet");

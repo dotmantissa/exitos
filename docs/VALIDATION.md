@@ -1,6 +1,6 @@
 # ExitOS validation record
 
-Updated after actual testnet browser verification on 2026-10-29T17:32:50.260Z.
+Updated after actual testnet browser verification on 2026-10-29T21:23:17.735Z.
 
 ## Verified locally
 
@@ -19,7 +19,7 @@ The browser runner uses patched Playwright 1.55.1 and Chromium 140. Its temporar
 
 The faucet funded the deployer with 0.2 test OKB. Five contracts were deployed and the release was admitted on X Layer testnet, chain 1952.
 
-- All five creation transactions match the compiled source and constructor arguments. The verifier checks runtime code hashes, reviewer roles, the current admission, revocation, manifest commitments and stored executable bytes. All sixteen actual circuit calls match the expected outputs at block 44835328 after admitting recovery version 0.2.0.
+- All five creation transactions match the compiled source and constructor arguments. The verifier checks runtime code hashes, reviewer roles, the current admission, revocation, manifest commitments and stored executable bytes. All sixteen actual circuit calls match the expected outputs at block 44842908 after admitting recovery version 0.3.0.
 - A real 50 XUSD drill claimed test credit, approved the exact amount, deposited it and withdrew it to the same wallet. The wallet returned to 1,000 XUSD and the vault shares returned to zero. Unauthorized admission and replay each produced a reverted receipt.
 - Thirteen actual authorization and revocation cases passed on a separate registry. Eleven were expected reverts. A valid admission and authorized revocation succeeded. The application registry was preserved.
 - The security runner persists signed transaction bytes before broadcast and resumes the same hashes. A transient latest state read after deployment was resolved by checking code at the actual receipt block.
@@ -67,3 +67,17 @@ The revised browser flow completed four real testnet transactions: exact allowan
 Seven introduction checks also passed against the exact public domain across all three viewport sizes in both themes. The public homepage loads without a wallet or an initial RPC request, explains the outage scenario and keeps navigation and browser history usable. The deployed assets match the final validated production build.
 
 The revised live application completed four additional genuine testnet transactions on the public domain. Its exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal all confirmed. The final withdrawal succeeded with all application origin requests blocked, and wallet tokens and vault shares returned exactly to their starting values. The hosted evidence now records this production revision.
+
+## Replacement palette
+
+The app, logo, browser theme metadata and generated kit use cream `#FEF8F5`, sage `#729877`, forest `#53745F` and charcoal `#231F20`. Light and dark surfaces, dividers and highlights derive from these four colours. Previous interface palette values are absent from the active source.
+
+Sixteen local Chromium checks pass after the palette revision. Eight additional rendered checks cover both application themes and the approved recovery page at 360, 768 and 1440 pixels in both themes. They verify secondary copy, action labels, responsive width, theme switching and browser theme metadata. The lowest tested app text ratio is 4.61:1; primary button labels measure 4.95:1 in light mode and 5.02:1 in dark mode. Mobile and desktop screenshots were inspected.
+
+Recovery version 0.3.0 was published in a new immutable store and admitted with actual reviewer signatures. The local module hash matches the published executable hash. All five source creation inputs and the current release commitments match; all sixteen circuit calls pass at the recorded verification block. Previous release pins remain in the release history.
+
+The local transaction drill confirmed exact allowance, a 7 XUSD deposit and a 4 XUSD app withdrawal. The saved page connection exceeded the original runner wait before its final withdrawal. The recovery runner reconstructed those three receipts from bounded on-chain event queries and completed the remaining 3 XUSD withdrawal with app-origin requests blocked. All four receipts succeeded and wallet tokens and vault shares returned exactly to their initial values. The runner now allows 120 seconds for asynchronous wallet and chain reads and checkpoints public transaction hashes in the ignored local directory.
+
+TypeScript, the 13 domain tests, Solidity compilation, the production build, product copy and credential scans pass. No recovery module bytes changed after publication.
+
+[Palette release](../evidence/testnet-palette-release.json), [local rendered palette checks](../evidence/palette-verification-local.json) and [local actual receipts](../evidence/testnet-browser.json) record this revision.

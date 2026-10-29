@@ -1,0 +1,584 @@
+{
+  "origin": "http://127.0.0.1:5175",
+  "verifiedAt": "2026-10-29T19:40:02.364Z",
+  "checks": [
+    {
+      "theme": "light",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "canvas": [
+          254,
+          248,
+          245
+        ],
+        "nav": [
+          243,
+          240,
+          235
+        ],
+        "surface": [
+          254,
+          248,
+          245
+        ],
+        "text": [
+          35,
+          31,
+          32
+        ],
+        "muted": [
+          74,
+          101,
+          84
+        ],
+        "action": [
+          83,
+          116,
+          95
+        ],
+        "on-action": [
+          254,
+          248,
+          245
+        ],
+        "highlight": [
+          229,
+          231,
+          222
+        ]
+      },
+      "meta": "#FEF8F5",
+      "ratios": {
+        "muted on canvas": 6.084032232915711,
+        "muted on nav": 5.631368146719381,
+        "muted on surface": 6.084032232915711,
+        "muted on highlight": 5.126027544799236,
+        "text on canvas": 15.492809204437952,
+        "button label": 4.951288884821388,
+        "action on surface": 4.951288884821388
+      },
+      "toggledMeta": "#231F20"
+    },
+    {
+      "theme": "dark",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "canvas": [
+          35,
+          31,
+          32
+        ],
+        "nav": [
+          42,
+          38,
+          38
+        ],
+        "surface": [
+          42,
+          38,
+          38
+        ],
+        "text": [
+          254,
+          248,
+          245
+        ],
+        "muted": [
+          212,
+          219,
+          207
+        ],
+        "action": [
+          114,
+          152,
+          119
+        ],
+        "on-action": [
+          35,
+          31,
+          32
+        ],
+        "highlight": [
+          48,
+          50,
+          46
+        ]
+      },
+      "meta": "#231F20",
+      "ratios": {
+        "muted on canvas": 11.513487606025503,
+        "muted on nav": 10.567222929075784,
+        "muted on surface": 10.567222929075784,
+        "muted on highlight": 9.148457808254625,
+        "text on canvas": 15.492809204437952,
+        "button label": 5.024509194572334,
+        "action on surface": 4.611557382530201
+      },
+      "toggledMeta": "#FEF8F5"
+    },
+    {
+      "route": "standalone recovery",
+      "width": 360,
+      "theme": "light",
+      "meta": "#FEF8F5",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "bg": [
+          254,
+          248,
+          245
+        ],
+        "surface": [
+          254,
+          248,
+          245
+        ],
+        "text": [
+          35,
+          31,
+          32
+        ],
+        "muted": [
+          74,
+          101,
+          84
+        ],
+        "action": [
+          83,
+          116,
+          95
+        ],
+        "on": [
+          254,
+          248,
+          245
+        ],
+        "tint": [
+          229,
+          231,
+          222
+        ]
+      },
+      "noHorizontalOverflow": true,
+      "ratios": {
+        "body text": 15.492809204437952,
+        "secondary text": 6.084032232915711,
+        "message text": 5.126027544799236,
+        "button label": 4.951288884821388
+      },
+      "errors": []
+    },
+    {
+      "route": "standalone recovery",
+      "width": 768,
+      "theme": "light",
+      "meta": "#FEF8F5",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "bg": [
+          254,
+          248,
+          245
+        ],
+        "surface": [
+          254,
+          248,
+          245
+        ],
+        "text": [
+          35,
+          31,
+          32
+        ],
+        "muted": [
+          74,
+          101,
+          84
+        ],
+        "action": [
+          83,
+          116,
+          95
+        ],
+        "on": [
+          254,
+          248,
+          245
+        ],
+        "tint": [
+          229,
+          231,
+          222
+        ]
+      },
+      "noHorizontalOverflow": true,
+      "ratios": {
+        "body text": 15.492809204437952,
+        "secondary text": 6.084032232915711,
+        "message text": 5.126027544799236,
+        "button label": 4.951288884821388
+      },
+      "errors": []
+    },
+    {
+      "route": "standalone recovery",
+      "width": 1440,
+      "theme": "light",
+      "meta": "#FEF8F5",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "bg": [
+          254,
+          248,
+          245
+        ],
+        "surface": [
+          254,
+          248,
+          245
+        ],
+        "text": [
+          35,
+          31,
+          32
+        ],
+        "muted": [
+          74,
+          101,
+          84
+        ],
+        "action": [
+          83,
+          116,
+          95
+        ],
+        "on": [
+          254,
+          248,
+          245
+        ],
+        "tint": [
+          229,
+          231,
+          222
+        ]
+      },
+      "noHorizontalOverflow": true,
+      "ratios": {
+        "body text": 15.492809204437952,
+        "secondary text": 6.084032232915711,
+        "message text": 5.126027544799236,
+        "button label": 4.951288884821388
+      },
+      "errors": []
+    },
+    {
+      "route": "standalone recovery",
+      "width": 360,
+      "theme": "dark",
+      "meta": "#231F20",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "bg": [
+          35,
+          31,
+          32
+        ],
+        "surface": [
+          46,
+          42,
+          43
+        ],
+        "text": [
+          254,
+          248,
+          245
+        ],
+        "muted": [
+          212,
+          219,
+          207
+        ],
+        "action": [
+          114,
+          152,
+          119
+        ],
+        "on": [
+          35,
+          31,
+          32
+        ],
+        "tint": [
+          48,
+          50,
+          46
+        ]
+      },
+      "noHorizontalOverflow": true,
+      "ratios": {
+        "body text": 15.492809204437952,
+        "secondary text": 11.513487606025503,
+        "message text": 9.148457808254625,
+        "button label": 5.024509194572334
+      },
+      "errors": []
+    },
+    {
+      "route": "standalone recovery",
+      "width": 768,
+      "theme": "dark",
+      "meta": "#231F20",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "bg": [
+          35,
+          31,
+          32
+        ],
+        "surface": [
+          46,
+          42,
+          43
+        ],
+        "text": [
+          254,
+          248,
+          245
+        ],
+        "muted": [
+          212,
+          219,
+          207
+        ],
+        "action": [
+          114,
+          152,
+          119
+        ],
+        "on": [
+          35,
+          31,
+          32
+        ],
+        "tint": [
+          48,
+          50,
+          46
+        ]
+      },
+      "noHorizontalOverflow": true,
+      "ratios": {
+        "body text": 15.492809204437952,
+        "secondary text": 11.513487606025503,
+        "message text": 9.148457808254625,
+        "button label": 5.024509194572334
+      },
+      "errors": []
+    },
+    {
+      "route": "standalone recovery",
+      "width": 1440,
+      "theme": "dark",
+      "meta": "#231F20",
+      "colours": {
+        "cream": [
+          254,
+          248,
+          245
+        ],
+        "sage": [
+          114,
+          152,
+          119
+        ],
+        "forest": [
+          83,
+          116,
+          95
+        ],
+        "charcoal": [
+          35,
+          31,
+          32
+        ],
+        "bg": [
+          35,
+          31,
+          32
+        ],
+        "surface": [
+          46,
+          42,
+          43
+        ],
+        "text": [
+          254,
+          248,
+          245
+        ],
+        "muted": [
+          212,
+          219,
+          207
+        ],
+        "action": [
+          114,
+          152,
+          119
+        ],
+        "on": [
+          35,
+          31,
+          32
+        ],
+        "tint": [
+          48,
+          50,
+          46
+        ]
+      },
+      "noHorizontalOverflow": true,
+      "ratios": {
+        "body text": 15.492809204437952,
+        "secondary text": 11.513487606025503,
+        "message text": 9.148457808254625,
+        "button label": 5.024509194572334
+      },
+      "errors": []
+    }
+  ]
+}

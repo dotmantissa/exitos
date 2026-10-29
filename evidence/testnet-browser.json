@@ -1,6 +1,6 @@
 {
   "chainId": 1952,
-  "verifiedAt": "2026-10-29T17:20:55.036Z",
+  "verifiedAt": "2026-10-29T21:23:17.735Z",
   "account": "0x225e0e9847e987Fe213D20B82D212FAE4d6e72DD",
   "origin": "http://127.0.0.1:5175",
   "startingAssets": "1000000000000000000000",
@@ -10,30 +10,30 @@
   "transport": "Controlled node signing transport using actual testnet transactions; no private key in browser",
   "transactions": [
     {
-      "hash": "0x4e9be4fc853dad0f2e0bac8611a73c54930c0a223c1205f2c0aa6ac7105e70fb",
+      "hash": "0xe37662feb6ce140fa3910277238c582c67f2f32e354cf5ff4cc449d755d14695",
       "status": "success",
-      "block": "44835472"
+      "block": "44843439"
     },
     {
-      "hash": "0x4cdbffefbf4b75a52cb88f5bfb295ab503a88720ffa2bacf17a6d2abb203e539",
+      "hash": "0xa496891c00be6956b4b6c6b0b6b6c69dfcaf96bf0b4b851f865e60c6c9cd8510",
       "status": "success",
-      "block": "44835517"
+      "block": "44843565"
     },
     {
-      "hash": "0xdce1008245e778204ccdeb5c6f520973f791e0992dca96abb4f118522f08b007",
+      "hash": "0xa8b6ecce0c0825dd9c98d908bd32660d7047b8df432952908d4dba723416f972",
       "status": "success",
-      "block": "44835570"
+      "block": "44843657"
     },
     {
-      "hash": "0x94f9d8a1165e1aad366a9b1bbec350343297ccfa3863555cdb9f830504b36835",
+      "hash": "0x58ae4237b06e569c8432b673ba590ecea2b58575f65bf4acc15b9be410e2bc4a",
       "status": "success",
-      "block": "44835612"
+      "block": "44850146"
     }
   ],
   "checks": [
     "actual allowance and deposit",
-    "dialog focus containment",
-    "invalid amount rejection",
+    "dialog focus containment verified before transport timeout",
+    "invalid amount rejection verified before transport timeout",
     "app withdrawal",
     "exact token and share balance reconciliation",
     "standalone withdrawal with application origin blocked"
