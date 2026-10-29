@@ -1,0 +1,88 @@
+{
+  "chainId": 1952,
+  "verifiedAt": "2026-10-29T15:53:31.849Z",
+  "registry": "0x73b835cf2c61c1f1ca87e2a9cab92d325db701fa",
+  "deploymentHash": "0xe6b2bb1146d5627b12f5c75127c70ef075328cdd6a2dabc33d08c10a4f4cc2d2",
+  "appRegistryUnaffected": "0x547df1941ebdc6227478355d1c442970a49bc6cb",
+  "cases": [
+    {
+      "name": "publishers without reviewer",
+      "hash": "0x3833b28499907bd21a4e45846f6089114ca7512ccc064c11ad5892a730e5d3bc",
+      "status": "reverted",
+      "block": "44830302"
+    },
+    {
+      "name": "one publisher and reviewer",
+      "hash": "0x17cae7505da32bb51dadc3817bd88bdb88742d81b2dd23f4cb79f75c63aac75d",
+      "status": "reverted",
+      "block": "44830308"
+    },
+    {
+      "name": "duplicate reviewer",
+      "hash": "0xa2e4a9108125cc06e5e9edf457e06b43d6fa8fe1c4dbf7568541a612e6be335b",
+      "status": "reverted",
+      "block": "44830314"
+    },
+    {
+      "name": "unknown signer",
+      "hash": "0x47d15c435ebc1be9c03ef55b3e1fc5515d27d37cbc3ff0bb2bbdb73b0bf40335",
+      "status": "reverted",
+      "block": "44830321"
+    },
+    {
+      "name": "wrong network signature",
+      "hash": "0x6e881f94d038678f2fc46c365cb065669bc257860e878393ac7f4092c0e7beab",
+      "status": "reverted",
+      "block": "44830327"
+    },
+    {
+      "name": "changed manifest root",
+      "hash": "0x5f8ec067b69b57e6f2b36ae7fe32191cd779e1725ad67e739624d7f10f20b051",
+      "status": "reverted",
+      "block": "44830333"
+    },
+    {
+      "name": "expired approval",
+      "hash": "0x49087eae4d4799bdeecbb8bfefd74791ee768025d4f10b6c20ecff9a9317215f",
+      "status": "reverted",
+      "block": "44830339"
+    },
+    {
+      "name": "empty storage address",
+      "hash": "0xa5665b91437b023d4bf20d0573b606fba906e70637563762d8b3ca74237ad900",
+      "status": "reverted",
+      "block": "44830344"
+    },
+    {
+      "name": "valid publisher quorum and reviewer",
+      "hash": "0xb98e7c61613c554be0f1e04804676685fe02bb15161d39180d02759af1cc0d27",
+      "status": "success",
+      "block": "44830350"
+    },
+    {
+      "name": "consumed admission nonce replay",
+      "hash": "0x3ae712d37d5ca4cd096248c15a5cb953c35a2d54e6a62bbee740803b5213724e",
+      "status": "reverted",
+      "block": "44830355"
+    },
+    {
+      "name": "admission signatures cannot revoke",
+      "hash": "0xdf62e2b38845f9eecafdfc5d9474263047b86c03e6b5ab13c3fd6102e43175af",
+      "status": "reverted",
+      "block": "44830361"
+    },
+    {
+      "name": "authorized revocation",
+      "hash": "0xc22dcbca3493495ea6cea1cea047b230219d84eaea2307ccf4da7d0c42b9da59",
+      "status": "success",
+      "block": "44830367"
+    },
+    {
+      "name": "revocation replay",
+      "hash": "0x81d389a38d4183a34d713288217671228bba23f9d21fbfe8f94418582050e9ba",
+      "status": "reverted",
+      "block": "44830373"
+    }
+  ],
+  "teamControlledReviewers": true
+}

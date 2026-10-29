@@ -1,0 +1,44 @@
+{
+  "chainId": 1952,
+  "verifiedAt": "2026-10-29T15:46:32.208Z",
+  "account": "0x225e0e9847e987Fe213D20B82D212FAE4d6e72DD",
+  "amount": "50 XUSD",
+  "startingAssets": "1000000000000000000000",
+  "endingAssets": "1000000000000000000000",
+  "startingShares": "0",
+  "endingShares": "0",
+  "receipts": {
+    "claim": {
+      "hash": "0x069b86eaa7f05910a4f2f9500b654d118c05f14aa0e08a4de6fb18c44294b712",
+      "block": "44829918",
+      "status": "success"
+    },
+    "approve": {
+      "hash": "0x424c0b791d8707d8e4350c5e290f80519f9df8402304ba7c1cb91095b7000d3e",
+      "block": "44829925",
+      "status": "success"
+    },
+    "deposit": {
+      "hash": "0xef4b691ee100acd3f518c1b033f9ec2f1dba965872a128e3d972d38fedc44860",
+      "block": "44829930",
+      "status": "success"
+    },
+    "withdraw": {
+      "hash": "0xf7168204992af8e4c6f8d34429098a6ba3dd868286ed6512b300fa7b5104ace6",
+      "block": "44829944",
+      "status": "success"
+    },
+    "replayRejected": {
+      "hash": "0xabcaccbead007a2be0362ab273d4bec93ba4a6881c4d6d33125ab310cf137ff5",
+      "status": "reverted",
+      "block": "44829950"
+    },
+    "unauthorizedRejected": {
+      "hash": "0x75a481d2ae839a79b52e81f48a0651348e66bab8e9c5e2613e43979d3d1ff807",
+      "status": "reverted",
+      "block": "44829955"
+    }
+  },
+  "teamControlledWallet": true,
+  "settlement": "L2 inclusion"
+}

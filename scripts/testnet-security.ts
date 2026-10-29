@@ -1,9 +1,11 @@
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync, renameSync } from "node:fs";
 import {
   encodeFunctionData,
   keccak256,
   stringToHex,
   zeroAddress,
+  encodeDeployData,
+  type Address,
   type Hex,
 } from "viem";
 import {
@@ -20,17 +22,91 @@ const signer = signingClient(),
   accounts = localAccounts(),
   compiled = artifact("ReleaseRegistry"),
   project = keccak256(stringToHex("exitos"));
-const deploymentHash = await signer.deployContract({
-  abi: compiled.abi,
-  bytecode: `0x${compiled.evm.bytecode.object}`,
-  args: [
-    project,
-    deployment.processor,
-    POLICY_HASH,
-    accounts.slice(1).map((account) => account.address),
-  ],
-});
-const registry = (await included(deploymentHash)).contractAddress!;
+// Persist a signed transaction before broadcasting. Retries resend the same
+// bytes, so an interrupted response cannot create a second registry or action.
+const statePath = ".local/security-state.json";
+type State = {
+  registry?: Address;
+  deploymentHash?: Hex;
+  expiry?: string;
+  transactions: Record<string, Hex>;
+  raw?: Record<string, Hex>;
+};
+const state: State = existsSync(statePath)
+  ? JSON.parse(readFileSync(statePath, "utf8"))
+  : { transactions: {}, raw: {} };
+state.raw ||= {};
+const checkpoint = () => {
+  writeFileSync(statePath + ".tmp", JSON.stringify(state, null, 2) + "\n", {
+    mode: 0o600,
+  });
+  renameSync(statePath + ".tmp", statePath);
+};
+async function broadcast(
+  name: string,
+  tx: { to?: Address; data: Hex; gas?: bigint },
+) {
+  let hash = state.transactions[name];
+  if (!hash) {
+    const request = await signer.prepareTransactionRequest(tx);
+    const serialized = await signer.signTransaction(request);
+    hash = keccak256(serialized);
+    state.transactions[name] = hash;
+    state.raw![name] = serialized;
+    checkpoint();
+  }
+  let known = false;
+  try {
+    await publicClient.getTransaction({ hash });
+    known = true;
+  } catch {}
+  if (!known) {
+    try {
+      await signer.sendRawTransaction({
+        serializedTransaction: state.raw![name],
+      });
+    } catch {
+      // A lost HTTP response can follow successful inclusion. Check the exact
+      // hash once more and otherwise leave the saved bytes available to retry.
+      try {
+        await publicClient.getTransaction({ hash });
+      } catch {
+        throw new Error(
+          `Broadcast could not be confirmed for ${name}. Resume the saved security journal.`,
+        );
+      }
+    }
+  }
+  return hash;
+}
+let registry = state.registry;
+let deploymentHash = state.deploymentHash;
+if (!registry) {
+  deploymentHash = await broadcast("registryDeployment", {
+    data: encodeDeployData({
+      abi: compiled.abi,
+      bytecode: `0x${compiled.evm.bytecode.object}`,
+      args: [
+        project,
+        deployment.processor,
+        POLICY_HASH,
+        accounts.slice(1).map((account) => account.address),
+      ],
+    }),
+  });
+  registry = (await included(deploymentHash)).contractAddress!;
+  state.registry = registry;
+  state.deploymentHash = deploymentHash;
+  checkpoint();
+}
+const registryReceipt = await included(deploymentHash!);
+if (
+  !(await publicClient.getCode({
+    address: registry,
+    blockNumber: registryReceipt.blockNumber,
+  }))
+)
+  throw new Error("The journaled security registry is unavailable.");
 const cases: { name: string; hash: Hex; status: string; block: string }[] = [];
 const types = {
   Approval: [
@@ -76,17 +152,14 @@ async function transact(
   data: Hex,
   expected: "success" | "reverted",
 ) {
-  const hash = await signer.sendTransaction({
-    to: registry,
-    data,
-    gas: 700000n,
-  });
+  const hash = await broadcast(name, { to: registry, data, gas: 700000n });
   const receipt = await publicClient.waitForTransactionReceipt({
     hash,
     timeout: 180000,
   });
   if (receipt.status !== expected)
     throw new Error(`Actual security check failed: ${name}`);
+  console.log(`Verified: ${name} (${receipt.status})`);
   cases.push({
     name,
     hash,
@@ -94,7 +167,11 @@ async function transact(
     block: String(receipt.blockNumber),
   });
 }
-const expiry = (await publicClient.getBlock()).timestamp + 7200n;
+const expiry = state.expiry
+  ? BigInt(state.expiry)
+  : (await publicClient.getBlock()).timestamp + 7200n;
+state.expiry = String(expiry);
+checkpoint();
 const message = {
   operation: 0,
   nonce: 0n,
@@ -175,7 +252,10 @@ const record = await publicClient.readContract({
   functionName: "releases",
   args: [1n],
 });
-if (record[0] !== deployment.root || record[3])
+if (
+  record[0] !== deployment.root ||
+  (record[3] && !state.transactions["authorized revocation"])
+)
   throw new Error("Actual admitted release record is incorrect.");
 const revokeMessage = { ...message, operation: 1, nonce: 1n, releaseId: 1n };
 const revoke = encodeFunctionData({

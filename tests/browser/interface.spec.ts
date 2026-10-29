@@ -73,13 +73,17 @@ test("Theme persists and wallet absence has an actionable message", async ({
     await page.evaluate(() => document.activeElement !== document.body),
   ).toBeTruthy();
 });
-test("Saved route blocks execution before approval when undeployed", async ({
+test("Saved route verifies the live release before offering a wallet connection", async ({
   page,
 }) => {
+  test.setTimeout(180000);
   await page.goto("/recovery-kit.html");
-  await expect(page.getByRole("region")).toContainText(
-    /Contracts have not been deployed|Your way home/,
-  );
+  await expect(page.getByRole("region")).toContainText("Your way home", {
+    timeout: 120000,
+  });
+  await expect(
+    page.getByRole("button", { name: "Connect wallet", exact: true }),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -87,7 +91,9 @@ test("Saved route blocks execution before approval when undeployed", async ({
   ).toBeTruthy();
 });
 
- test('Development server cannot serve local wallet files', async ({request}) => {
- const response=await request.get('/.local/testnet-wallets.json');
- expect(response.status()).toBe(403);
- });
+test("Development server cannot serve local wallet files", async ({
+  request,
+}) => {
+  const response = await request.get("/.local/testnet-wallets.json");
+  expect(response.status()).toBe(403);
+});
