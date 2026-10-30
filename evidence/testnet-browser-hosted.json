@@ -1,6 +1,6 @@
 {
   "chainId": 1952,
-  "verifiedAt": "2026-10-29T17:32:50.260Z",
+  "verifiedAt": "2026-10-30T07:33:58.390Z",
   "account": "0x225e0e9847e987Fe213D20B82D212FAE4d6e72DD",
   "origin": "https://exitos.vercel.app",
   "startingAssets": "1000000000000000000000",
@@ -10,24 +10,24 @@
   "transport": "Controlled node signing transport using actual testnet transactions; no private key in browser",
   "transactions": [
     {
-      "hash": "0xd7d0edc8f31aa99c2d62c5b3eb4090c51ef69e62e445edcce2187f1d7a6901f7",
+      "hash": "0x9577abc8dbf68a0eb771fe5d266c6cc81d6e14e7bcf2fbe79b43eca594a6db80",
       "status": "success",
-      "block": "44836216"
+      "block": "44886685"
     },
     {
-      "hash": "0x22de4db77789d6203d44052b015ff056d11368ffe5d1893334c001bd7590b9c1",
+      "hash": "0xd1546078d5df66fad9161157d67878846177e8bfb86f5048826412b01b68f621",
       "status": "success",
-      "block": "44836252"
+      "block": "44886723"
     },
     {
-      "hash": "0x216225eb0d19a67d4a919e2f3708f932c729d25b8b49edff6256d148146d1eb2",
+      "hash": "0x4d654604474e27ae202eb556e0f771673d05d5c49cfc0fe893821aa4ff82ffbc",
       "status": "success",
-      "block": "44836293"
+      "block": "44886761"
     },
     {
-      "hash": "0x4380f29656079d863bf6a243da7b66b97919b38f26478b7c57a83c7591e97b6d",
+      "hash": "0x9bd140a5aa17ab9ea72839d54b8970e037b650cd39c272b1bdd3623bd11a5357",
       "status": "success",
-      "block": "44836328"
+      "block": "44886798"
     }
   ],
   "checks": [

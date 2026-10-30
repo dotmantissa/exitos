@@ -1,6 +1,6 @@
 # ExitOS validation record
 
-Updated after actual testnet browser verification on 2026-10-29T21:23:17.735Z.
+Updated after actual hosted testnet browser verification on 2026-10-30T07:33:58.390Z.
 
 ## Verified locally
 
@@ -42,7 +42,7 @@ Browser signing uses a literal JavaScript provider bridge. TSX function serializ
 
 ## Published application
 
-The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_6RgCynGFmJudJQLpJWoHS8k2PLoR` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
+The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_7EDn9a8JWcXUW5w3zkC15ZhQxym2` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
 
 The live headers match the configured content policy, frame restrictions, referrer privacy and content type protection. Live JavaScript, CSS, logo, recovery kit and Service Worker bytes match the locally validated build. Eight private, source and missing paths return 404, including the local wallet file, environment credentials and Git configuration.
 
@@ -81,3 +81,9 @@ The local transaction drill confirmed exact allowance, a 7 XUSD deposit and a 4 
 TypeScript, the 13 domain tests, Solidity compilation, the production build, product copy and credential scans pass. No recovery module bytes changed after publication.
 
 [Palette release](../evidence/testnet-palette-release.json), [local rendered palette checks](../evidence/palette-verification-local.json) and [local actual receipts](../evidence/testnet-browser.json) record this revision.
+
+The replacement palette is published on the exact public domain. The hosted asset hashes match the validated production build, and all eight private or source paths return 404. Seven first-visit browser checks passed across 360, 768 and 1440 pixels in both themes. Eight hosted rendered palette checks also passed for both app themes and all six responsive approved recovery views. Their lowest tested text ratio is 4.61:1. The hosted phone and desktop screenshots were inspected.
+
+[Hosted palette checks](../evidence/palette-verification-hosted.json) and [hosting evidence](../evidence/vercel-hosting.json) record the published palette.
+
+The palette revision also completed four genuine transactions through the exact public domain: an exact allowance, a 7 XUSD deposit, a 4 XUSD app withdrawal and a 3 XUSD withdrawal from approved recovery version 0.3.0 with every application origin request blocked. All four receipts succeeded, and the wallet returned exactly to 1,000 XUSD with zero vault shares. [Hosted signing evidence](../evidence/testnet-browser-hosted.json) records this verified revision.
