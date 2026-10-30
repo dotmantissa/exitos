@@ -1,7 +1,7 @@
 {
   "origin": "https://exitos.vercel.app",
-  "verifiedAt": "2026-10-30T07:31:20.492Z",
-  "deploymentId": "dpl_7EDn9a8JWcXUW5w3zkC15ZhQxym2",
+  "verifiedAt": "2026-10-30T08:56:58.921Z",
+  "deploymentId": "dpl_866f7xKRGCfMQShexdghEtrrbpSU",
   "state": "READY",
   "checks": [
     {
@@ -27,8 +27,8 @@
     },
     {
       "check": "asset bytes and availability",
-      "path": "/assets/index-oDQ2224m.js",
-      "sha256": "d2ede8a318792d467b1ebca3d56ba40e2cae474fd4e7f547462ac81f95bbc1f1"
+      "path": "/assets/index-_uhW9fcP.js",
+      "sha256": "fd566cd0e2de7e500c97e0186f329b8dcbfe6884a4925f59aae65670f677b71a"
     },
     {
       "check": "asset bytes and availability",

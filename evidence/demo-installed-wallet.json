@@ -1,0 +1,109 @@
+{
+  "verifiedAt": "2026-10-30T10:06:03.508Z",
+  "application": "https://exitos.vercel.app",
+  "chainId": 1952,
+  "wallet": {
+    "type": "Official installed MetaMask extension",
+    "version": "13.55.0",
+    "address": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5"
+  },
+  "recoveryVersion": "0.3.0",
+  "transactions": [
+    {
+      "hash": "0x8a862032eb946f6e6dba2014a7c2ad605f49182e78739c0d7290c98ecc07a53d",
+      "account": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "action": "claim",
+      "amount": "1000",
+      "status": "success",
+      "at": 1793351843464,
+      "block": "44893008",
+      "from": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "to": "0x1c1c2b15415a7e7f79c4448593149ca223e284d7",
+      "decodedFunction": "claim",
+      "gasUsed": "72939"
+    },
+    {
+      "hash": "0xb5e19d7af01a792b4e2b4abb39906b89cac30bbac49baa0428317f3e562034bb",
+      "account": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "action": "approve",
+      "amount": "10",
+      "status": "success",
+      "at": 1793351960072,
+      "block": "44893124",
+      "from": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "to": "0x1c1c2b15415a7e7f79c4448593149ca223e284d7",
+      "decodedFunction": "approve",
+      "gasUsed": "46371"
+    },
+    {
+      "hash": "0x1bf0d877215a5951a44db61bd5230c818ed34cb975b194c49f1e2fe509913ae5",
+      "account": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "action": "deposit",
+      "amount": "10",
+      "status": "success",
+      "at": 1793352119876,
+      "block": "44893284",
+      "from": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "to": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
+      "decodedFunction": "deposit",
+      "gasUsed": "107006"
+    },
+    {
+      "hash": "0xe4189bc3252a93054afd0bb6c625de0679f1ea84159f671487349e2cf3b21247",
+      "account": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "action": "withdraw",
+      "amount": "4",
+      "status": "success",
+      "at": 1793352635201,
+      "block": "44893796",
+      "from": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "to": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
+      "decodedFunction": "withdraw",
+      "gasUsed": "58275"
+    },
+    {
+      "hash": "0x00d1682051522536c1a19036b997d3f3c7ecd289aeea71e3734c5f506353af40",
+      "action": "withdraw",
+      "amount": "6",
+      "source": "downloaded local file",
+      "status": "success",
+      "block": "44895843",
+      "from": "0x60ef953a8a64964a0ae2bcfb653ea66e38705cf5",
+      "to": "0x2a1dfb0afbc51726416198bdcabd6ac2d3dfe94f",
+      "decodedFunction": "withdraw",
+      "gasUsed": "46620"
+    }
+  ],
+  "initial": {
+    "block": "44893007",
+    "walletXUSD": "0",
+    "vaultShares": "0"
+  },
+  "final": {
+    "block": "44895922",
+    "walletXUSD": "1000",
+    "vaultShares": "0",
+    "allowanceXUSD": "0"
+  },
+  "originIsolation": {
+    "applicationOriginBlocked": true,
+    "blockedRequests": [
+      {
+        "url": "https://exitos.vercel.app/?outage=verified-drill",
+        "method": "GET",
+        "at": "2026-10-30T10:02:32.157Z"
+      }
+    ],
+    "execution": "Genuine downloaded file URL with unmodified installed MetaMask provider",
+    "browserLocalFileAccess": true,
+    "browserConfiguration": "Isolated Chromium with extension file URL permission and --allow-file-access-from-files"
+  },
+  "kitSha256": "6d865b8125ee81e4b01662c9742cdd6d26c6e4ee8ee61b89f92f32495aada5ac",
+  "limitations": [
+    "X Layer testnet assets only",
+    "MetaMask flagged application domain; exact cause unresolved and disclosed in video",
+    "One OKX operated RPC; supported independently deployed test vault only",
+    "L2 inclusion is not Ethereum settlement"
+  ],
+  "capture": "Genuine X11 desktop recordings; normal-speed action clips, idle waits cut and disclosed"
+}

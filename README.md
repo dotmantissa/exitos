@@ -85,7 +85,7 @@ Only recorded evidence belongs in the submission. A passing local build does not
 
 The downloaded HTML file contains the trusted bootstrap, public deployment pins and fonts. It reads the approved module from the chain, checks every executable byte, and then mounts the withdrawal interface. It can operate without application asset requests. The browser also saves a copy through a Service Worker.
 
-Wallet injection depends on the browser. Use a compatible wallet browser or extension. A downloaded file must still be able to reach the RPC, and some wallets do not inject into local files. The hosted standalone route shares the application's origin. Test the chosen delivery method before relying on it.
+Wallet injection depends on the browser. Use a compatible wallet browser or extension. The [installed MetaMask drill](evidence/demo-installed-wallet.json) verified five actual transactions, including the downloaded file withdrawal. That file test used an isolated Chromium browser with extension file URL permission and local file access enabled. MetaMask currently flags the test deployment; the reason is unresolved and is disclosed in the demo. A downloaded file must still be able to reach the RPC, and some wallets do not inject into local files. The hosted standalone route shares the application's origin. Test the chosen delivery method before relying on it.
 
 The bootstrap remains trusted software. The current testnet configuration reads one OKX operated RPC. Stronger independent node checks, official DeWEB delivery and an independently pinned bootstrap are separate production gates.
 

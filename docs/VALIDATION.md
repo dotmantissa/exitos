@@ -1,6 +1,6 @@
 # ExitOS validation record
 
-Updated after actual hosted testnet browser verification on 2026-10-30T07:33:58.390Z.
+Updated after actual installed-wallet verification on 2026-10-30T10:06:03.508Z.
 
 ## Verified locally
 
@@ -26,7 +26,7 @@ The faucet funded the deployer with 0.2 test OKB. Five contracts were deployed a
 - Four actual browser transactions passed: exact allowance, 7 XUSD deposit, 4 XUSD app withdrawal and 3 XUSD standalone withdrawal after blocking every request to the application origin. Wallet tokens and vault shares returned exactly to their initial balances. Dialog focus containment and invalid amount rejection also passed.
 - The disconnected browser checks passed at all three viewport sizes in both themes. The saved route check now waits for actual release verification and a visible wallet connection control.
 
-The browser signing transport keeps the key in Node and sends constrained actual testnet transactions. It does not substitute fabricated balances or receipts. A separate check with an installed user wallet remains a release gate.
+The browser signing transport keeps the key in Node and sends constrained actual testnet transactions. It does not substitute fabricated balances or receipts. The later installed MetaMask check below independently verifies the recorded delivery route.
 
 Public records: [deployment](../evidence/testnet-deployment.json), [source and release verification](../evidence/testnet-verification.json), [transaction drill](../evidence/testnet-e2e.json) [authorization cases](../evidence/testnet-security.json) and [browser signing](../evidence/testnet-browser.json).
 
@@ -42,7 +42,7 @@ Browser signing uses a literal JavaScript provider bridge. TSX function serializ
 
 ## Published application
 
-The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_7EDn9a8JWcXUW5w3zkC15ZhQxym2` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
+The public application is available at [exitos.vercel.app](https://exitos.vercel.app). Vercel deployment `dpl_866f7xKRGCfMQShexdghEtrrbpSU` completed its locked install and production build. The exact requested alias was assigned explicitly. The project authentication gate was removed so visitors can open the dapp directly.
 
 The live headers match the configured content policy, frame restrictions, referrer privacy and content type protection. Live JavaScript, CSS, logo, recovery kit and Service Worker bytes match the locally validated build. Eight private, source and missing paths return 404, including the local wallet file, environment credentials and Git configuration.
 
@@ -87,3 +87,15 @@ The replacement palette is published on the exact public domain. The hosted asse
 [Hosted palette checks](../evidence/palette-verification-hosted.json) and [hosting evidence](../evidence/vercel-hosting.json) record the published palette.
 
 The palette revision also completed four genuine transactions through the exact public domain: an exact allowance, a 7 XUSD deposit, a 4 XUSD app withdrawal and a 3 XUSD withdrawal from approved recovery version 0.3.0 with every application origin request blocked. All four receipts succeeded, and the wallet returned exactly to 1,000 XUSD with zero vault shares. [Hosted signing evidence](../evidence/testnet-browser-hosted.json) records this verified revision.
+
+## Installed MetaMask demo and wallet event fix
+
+Repeated account and chain notifications from the installed wallet invalidated balance reads and left the loader running. Commit `89e45fd` ignores identical notifications and clears loading when wallet state genuinely changes. Application/script types, product copy, 13 domain tests, 16 browser checks, the production build and credential scans passed. The fix is deployed on the exact public domain, and hosted assets, headers and private path checks passed. Recovery module 0.3.0 was unchanged.
+
+A new isolated test account received 0.02 test OKB. Official MetaMask 13.55.0 signed five actual transactions on chain 1952: claim 1,000 XUSD, approve exactly 10, deposit 10, withdraw 4 through the app and withdraw the remaining 6 from the downloaded HTML file. All five receipts succeeded. The read-only verifier decoded each transaction, checked its signer, recipient, function and amount, required the corresponding contract events, compared the downloaded kit with the deployed build, and reconciled the final balance to 1,000 XUSD, zero shares and zero allowance.
+
+Every request to the application origin was blocked during the saved-file withdrawal. Browser navigation to the website failed while the genuine downloaded page read approved code and signed directly through the installed wallet. Website access was restored only after the withdrawal was confirmed, for the final app balance shot.
+
+MetaMask flagged the application domain; its cause remains unresolved and the warning is retained in the demo. Reconnecting wallet permissions resolved an initial 4100 transaction authorization failure. Local-file provider communication also required extension file URL permission and `--allow-file-access-from-files` in the isolated Chromium browser. These browser settings and testnet-only scope are disclosed. No wallet provider, balance or RPC response was fabricated. No keys, passwords or browser profiles are included in exported media or public evidence.
+
+[Installed-wallet evidence](../evidence/demo-installed-wallet.json) contains the five hashes, decoded functions, successful blocks, kit checksum and exact reconciliation. Earlier browser signing evidence remains available with its original scope.
