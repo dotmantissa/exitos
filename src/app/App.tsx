@@ -182,8 +182,10 @@ export default function App() {
   const dialog = useRef<HTMLDialogElement>(null);
   const version = useRef(0),
     lock = useRef(false),
-    accountRef = useRef(account);
+    accountRef = useRef(account),
+    chainIdRef = useRef(chainId);
   accountRef.current = account;
+  chainIdRef.current = chainId;
   const disconnected = !account;
   const wrongNetwork = !!account && chainId !== 1952;
   const available =
@@ -259,16 +261,21 @@ export default function App() {
     const reset = () => {
       version.current++;
       setPosition(undefined);
+      setLoading(false);
       setFlow((current) => (current?.hash ? current : undefined));
       setError("");
     };
     const accounts = (value: unknown) => {
+      const next = (value as Address[])[0];
+      if (next?.toLowerCase() === accountRef.current?.toLowerCase()) return;
       reset();
-      setAccount((value as Address[])[0]);
+      setAccount(next);
     };
     const network = (value: unknown) => {
+      const next = Number(value);
+      if (next === chainIdRef.current) return;
       reset();
-      setChainId(Number(value));
+      setChainId(next);
     };
     const disconnect = () => {
       reset();
